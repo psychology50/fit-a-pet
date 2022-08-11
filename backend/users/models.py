@@ -24,7 +24,7 @@ class CustomAccountManger(BaseUserManager):
         user = self.model(
             nickname=nickname, username=username, 
             password=password, phone=extra_fields.pop('phone', None),
-            **extra_fields
+            email=extra_fields.pop('email', None), **extra_fields
         )
         user.set_password(password)
         user.save()
@@ -39,6 +39,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=45, )
     nickname = models.CharField(max_length=45, unique=True)
     create_dt = models.DateTimeField(default=timezone.now, blank=True, null=True)
+    email = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=45, blank=True, null=True)
     profile_img = models.ImageField(blank=True, null=True)
 

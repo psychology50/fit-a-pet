@@ -165,6 +165,7 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+    'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S.%fZ",
 }
 
 CORS_ALLOW_CREDENTIALS = True
