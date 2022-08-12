@@ -8,8 +8,8 @@ class MemberPermission(BasePermission):
 
         if request.method == 'delete':
             master = Pet.objects.get(pet_id=pet_id).master.user_id
-            return True if user.user_id == master else False
+            return user.user_id == master
         else:
-            member = user.member_set.all().values_list('pet_id__pet_id', flat=True)
-            return True if pet_id in member else False
+            member = user.member_set.values_list('pet_id__pet_id', flat=True)
+            return int(pet_id) in member
 

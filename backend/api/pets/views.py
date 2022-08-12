@@ -25,14 +25,14 @@ class PetViewSet(ModelViewSet):
             permission_classes = [IsAuthenticated, MemberPermission]
         return [permission() for permission in permission_classes]
 
-    def create(self, request, *args, **kwargs):
+    def create(self, request):
         try:
             request.data['master'] = request.user.user_id
             member = request.data.pop('member')
             member.append(request.user.nickname)
         except KeyError:
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
-        print(request.data)
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -59,14 +59,19 @@ class PetViewSet(ModelViewSet):
                 "member_info": users_s.data, 
             },status=status.HTTP_201_CREATED, headers=headers)
 
-    def list(self, request, *args, **kwargs):
+    def list(self, request):
         member = Member.objects.filter(user_id=request.user)
         pet_list = self.queryset.filter(pet_id__in=member.values_list('pet_id')).order_by('pet_id')
         serializer = ListPetSerializer(pet_list, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, *args, **kwargs):
-        pass
+    @action(methods=['GET'] ,detail=True)
+    def pet_detail(self, request, *args, **kwargs):
+        pet_id = kwargs.pop('pk', False)
+        pet_data = self.queryset.get(pet_id=pet_id)
+        serializer = DetailPetSerializer(pet_data)
+        return Response(serializer.data)
+        
 
     def update(self, request, *args, **kwargs):
         pass
