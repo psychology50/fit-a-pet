@@ -72,7 +72,6 @@ class PetViewSet(ModelViewSet):
         serializer = DetailPetSerializer(pet_data)
         return Response(serializer.data)
         
-
     def update(self, request, *args, **kwargs):
         pass
 
