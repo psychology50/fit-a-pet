@@ -21,7 +21,7 @@ function Login(){
     }
 
     if(navigate){
-        return <Navigate to="/InitialMain"/>
+        return <Navigate to="/Main"/>
     }
 
     return(

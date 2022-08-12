@@ -1,14 +1,19 @@
 import './App.css';
-import Splash from './Start/Splash';
-import Login from './Start/Login';
-import SignUp from './Start/SignUp';
-import CreatePet from './Initial/CreatePet';
-import InitialMain from './Initial/InitialMain';
-import ModifyMember from './Initial/ModifyMember';
-import Main from './Main';
+import Splash from './page/Start/Splash';
+import Login from './page/Start/Login';
+import SignUp from './page/Start/SignUp';
+import CreatePet from './page/Initial/CreatePet';
+import InitialMain from './page/Initial/InitialMain';
+import ModifyMember from './page/Initial/ModifyMember';
+import { useState } from 'react';
+import Main from './page/MainPage/Main';
+import PetProfile from './page/MainPage/PetProfile';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
+
+  const[petlist,setPetlist]=useState([]);
+
   return (
     <>
       <Router>
@@ -17,9 +22,10 @@ function App() {
 					<Route path="/Login" element={<Login/>}></Route>
           <Route path="/SignUp" element={<SignUp/>}></Route>
           <Route path="/InitialMain" element={<InitialMain/>}></Route>
-          <Route path="/Main" element={<Main/>}></Route>
+          <Route path="/Main" element={<Main petlist={petlist} setPetlist={setPetlist}/>}></Route>
           <Route path="/CreatePet" element={<CreatePet/>}></Route>
           <Route path="/ModifyMember" element={<ModifyMember/>}></Route>
+          <Route path="/PetProfile/:id" element={<PetProfile/>}></Route>
 				</Routes>
 			</Router>
     </>
