@@ -34,34 +34,19 @@ class ListPetCycleSerializer(serializers.ModelSerializer):
         res = date[0] if date else None
         return res
 
-class ListPetEventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        ordering = ['-date']
-        fields = ['event_name', 'date', 'is_clear']
-
 class ListPetSerializer(serializers.ModelSerializer):
     cycle = ListPetCycleSerializer(many=True, source="cycle_set")
-    event = ListPetEventSerializer(many=True, source="event_set")
     class Meta:
         model = Pet
-        fields = ['pet_name', 'birthday', 'code', 'cycle', 'event']
+        fields = ['pet_id', 'pet_name', 'birthday', 'code', 'cycle']
 
 class DetailPetSerializer(serializers.ModelSerializer):
-    cycle = ListPetCycleSerializer(many=True, source="cycle_set")
-    event = serializers.SerializerMethodField(source="event_set")
-    active_img = serializers.SerializerMethodField()
-    prescription = serializers.SerializerMethodField()
     master = serializers.StringRelatedField()
     class Meta:
         model = Pet
-        fields = ['pet_name', 'master', 'birthday', 'code', 'cycle', 'event', 'active_img', 'prescription']
+        fields = ['pet_id', 'pet_name', 'master', 'birthday', 'code']
 
-    def get_event(self, obj):
-        return obj.event_set.order_by('-date').values('event_name', 'date', 'is_clear')
-
-    def get_active_img(self, obj):
-        return obj.active_img.order_by('-create_dt').values('create_dt', 'image', 'caption')
-
-    def get_prescription(self, obj):
-        return obj.prescription.order_by('-create_dt').values('create_dt', 'content')
+class CycleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cycle
+        fields = '__all__'

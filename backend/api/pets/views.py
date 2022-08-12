@@ -80,3 +80,18 @@ class PetViewSet(ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         pass
+
+class CycleViewSet(ModelViewSet):
+    queryset = Cycle.objects.all()
+    serializer_class = CycleSerializer
+
+    def get_permissions(self):
+        if self.action == 'create' or self.action == 'list':
+            permission_classes = [IsAuthenticated]
+        else:
+            permission_classes = [IsAuthenticated, MemberPermission]
+        return [permission() for permission in permission_classes]
+
+    def retrieve(self, request, *args, **kwargs):
+        print(kwargs) # {'pet_pk': '1', 'pk': '1'}
+        pass
