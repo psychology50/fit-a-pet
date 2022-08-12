@@ -33,7 +33,7 @@ class Pet(models.Model):
         default=generate_random_slug_code,
         verbose_name="code",
     )
-    today = models.DateField(default=timezone.now, blank=True, null=True)
+    today = models.DateField(default=timezone.now().date, blank=True, null=True)
     profile_img = models.ImageField(blank=True, null=True)
     master = models.ForeignKey(CustomUser, on_delete=models.CASCADE, db_column='user_id', related_name="master")
 
@@ -52,7 +52,7 @@ class ActiveImage(models.Model):
     )
     image = models.ImageField(blank=True, null=True)
     caption = models.CharField(max_length=45, verbose_name="caption", blank=True, null=True)
-    create_dt = models.DateField(default=timezone.now, blank=True, null=True)
+    create_dt = models.DateField(default=timezone.now().date, blank=True, null=True)
     pet_id = models.ForeignKey(Pet, on_delete=models.CASCADE, db_column='pet_id', related_name='active_img')
 
     def __str__(self):
@@ -94,7 +94,7 @@ class Cycle(models.Model):
     cycle_name = models.CharField(max_length=45)
     is_notify = models.BooleanField(default=False)
     pet_id = models.ForeignKey(Pet, on_delete=models.CASCADE, db_column='pet_id')
-    limit_at = models.DateField()
+    limit_at = models.CharField(max_length=45, blank=True, null=True) # 추후 수정
     # 주기성 이벤트
     mon = models.BooleanField(default=False)
     tue = models.BooleanField(default=False)
@@ -103,7 +103,7 @@ class Cycle(models.Model):
     fri = models.BooleanField(default=False)
     sat = models.BooleanField(default=False)
     sun = models.BooleanField(default=False)
-    time = models.CharField(max_length=45) # 몇 시에 반복할지(일정 패턴)
+    time = models.CharField(max_length=45, default="0") # 몇 시에 반복할지(일정 패턴)
     # 무작위성 이벤트
     is_cycle = models.BooleanField(default=True) # 반복은 하는데 규칙적이진 않은 경우. (가장 마지막 갱신 데이터 조회) 
 
