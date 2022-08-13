@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
+from rest_framework.generics import CreateAPIView, UpdateAPIView
 
 from users.models import CustomUser
 from pets.models import Pet, Member
@@ -54,7 +55,7 @@ class PetViewSet(ModelViewSet):
                     "master": {
                         "nickname": request.user.nickname, "username": request.user.username,
                         "profile_img": request.user.profile_img or None
-                    },
+                    }, 
                 },
                 "member_info": users_s.data, 
             },status=status.HTTP_201_CREATED, headers=headers)
@@ -81,3 +82,12 @@ class PetViewSet(ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         pass
+
+class EventCreateView(CreateAPIView):
+    queryset = Event
+    serializer_class = EventSerializer
+
+class EventUpdateView(UpdateAPIView):
+    queryset = Event
+    serializer_class = EventSerializer
+

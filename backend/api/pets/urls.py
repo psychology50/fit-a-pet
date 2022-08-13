@@ -28,4 +28,8 @@ urlpatterns = [
     # path('', include(event_router.urls)),
     # path('', include(prescription_router)),
     # path('', include(active_router))
+    
+    # events
+    path('events/', EventCreateView.as_view(), name='event-create'),
+    path('events/<int:pk>/', EventUpdateView.as_view(), name='event-update')
 ]

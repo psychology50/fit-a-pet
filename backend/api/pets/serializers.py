@@ -65,3 +65,9 @@ class DetailPetSerializer(serializers.ModelSerializer):
 
     def get_prescription(self, obj):
         return obj.prescription.order_by('-create_dt').values('create_dt', 'content')
+
+
+class EventSerializer(serializers.ModelSerializer):
+    model = Event
+    fields = '__all__'
+
