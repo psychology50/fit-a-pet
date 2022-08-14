@@ -29,6 +29,6 @@ urlpatterns = [
     # path('', include(active_router))
     
     # events
-    path('events/', EventCreateView.as_view(), name='event-create'),
+    path('<int:pk>/events/', EventCreateView.as_view(), name='event-create'),
     path('events/<int:pk>/', EventUpdateView.as_view(), name='event-update')
 ]
