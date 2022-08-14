@@ -26,16 +26,23 @@ function Login(){
 
     return(
         <form onSubmit={submit}>
-            <div>
-                로그인
+            <div className="login">
+                <h3 className="title">
+                    로그인
+                </h3>
+                <input className="input id" type="id" placeholder="아이디"  onChange={e=>setID(e.target.value)}/>
+                <input className="input pw" type="pw" placeholder="비밀번호"  onChange={e=>setPW(e.target.value)}/>
+                <button className="ctaBtn submit" type="submit">로그인하기</button>
+                {/* connnect find id/pw link */}
+                <a href="#" className="findIdPw">아이디/비밀번호 찾기</a>
+                <div className="bottomSignup">
+                    <p>계정이 없으신가요?</p>
+                    <Link style={{textDecoration: 'none'}} to="/SignUp">
+                        <p className="btnSignup">계정만들기</p>
+                    </Link>
+                </div>
             </div>
-            <input type="id" placeholder="ID"  onChange={e=>setID(e.target.value)}/>
-            <input type="pw" placeholder="PW"  onChange={e=>setPW(e.target.value)}/>
-   
-            <Link to="/SignUp">
-                <p>회원가입</p>
-            </Link>
-            <button type="submit">Login</button>
+            
         </form>
     );
 }

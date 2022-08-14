@@ -23,13 +23,43 @@ function SignUp(){
 
     return(
         <form onSubmit={submit}>
-            <div>
-                회원가입
+            <div className="topBar">
+                <button className="backBtn"></button>
+                <div className="title">회원가입</div>
+                <button type="submit" className="subBtn">가입하기</button>
             </div>
-            <input type="name" placeholder="Name" onChange={e=>setName(e.target.value)} />
-            <input type="id" placeholder="ID" onChange={e=>setID(e.target.value)}/>
-            <input type="pw" placeholder="PW" onChange={e=>setPW(e.target.value)}/>
-            <button type="submit">Submit</button>
+            <div className="typeInGroup">
+                <div className="typeIn">
+                    <p className="inputTitle">닉네임</p>
+                    <input className="input" type="name" placeholder="Name" onChange={e=>setName(e.target.value)} />
+                </div>
+                <div className="typeIn">
+                    <p className="inputTitle">아이디</p>
+                    <input className="input" type="id" placeholder="ID" onChange={e=>setID(e.target.value)}/>
+                </div>
+                <div className="typeIn">
+                    <p className="inputTitle">비밀번호</p>
+                    <input className="input" type="pw" placeholder="PW" onChange={e=>setPW(e.target.value)}/>
+                </div>
+                <div className="typeIn">
+                    <p className="inputTitle">비밀번호 확인</p>
+                    <input className="input" type="pw" placeholder="PW" onChange={e=>setPW(e.target.value)}/>
+                </div>
+                <div className="typeIn">
+                    <p className="inputTitle">이메일</p>
+                    <input className="input" type="email" placeholder="email" onChange={e=>setPW(e.target.value)}/>
+                </div>
+                <div className="typeIn">
+                    <p className="inputTitle">휴대폰 번호</p>
+                    <div className="phonNumber">
+                        <input className="input" type="text" placeholder="000" onChange={e=>setPW(e.target.value)}/>
+                        <p>-</p>
+                        <input className="input" type="text" placeholder="0000" onChange={e=>setPW(e.target.value)}/>
+                        <p>-</p>
+                        <input className="input" type="text" placeholder="0000" onChange={e=>setPW(e.target.value)}/>
+                    </div>
+                </div>
+            </div>
         </form>
     );
 }
