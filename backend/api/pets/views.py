@@ -126,6 +126,15 @@ class EventCreateView(CreateAPIView):
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticated]
 
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+        request.data['pet_id'] = kwargs('pk', False)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
 class EventUpdateView(UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
