@@ -1,62 +1,115 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axiosInstance from '../../apis/axios'
 import { Navigate } from "react-router";
+import { useNavigate, Link } from 'react-router-dom';
 
-function SignUp(){
-    const[name,setName]=useState('');
-    const[id,setID]=useState('');
-    const[pw,setPW]=useState('');
-    const [navigate,setNavigate]=useState(false);
-    
-    const submit = async e=> {
+function SignUp() {
+    const navigate = useNavigate();
+    const initData = Object.freeze({
+        nickname: '',
+        username: '',
+        password1: '', password2: '',
+        email: '',
+        phone1: '', phone2: '', phone3: ''
+    })
+    const [data, updateData] = useState(initData)
+    const handleChange = (e) => {
+        updateData({
+            ...data, [e.target.name]: e.target.value.trim(),
+        });
+    }
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name,id,pw);
-        //await axios.post('',{
-          //  name,id,pw
-        //});
-        setNavigate(true);
+
+        if (data.password1 !== data.password2) {
+            return alert("입력된 비밀번호가 서로 다릅니다.")
+        }
+
+        axiosInstance
+            .post('users/signup/', {
+                nickname: data.nickname,
+                username: data.username,
+                password: data.password,
+                email: data.email,
+                phone: data.phone1 + data.phone2 + data.phone3,
+            })
+            .then((res) => {
+                navigate('/login');
+                console.log(res) // 디버깅용
+                console.log(res.data)
+            })
     }
 
-    if(navigate){
-        return <Navigate to="/login"/>
-    }
+    //  <Navigate to="/login"/>
 
     return(
-        <form onSubmit={submit}>
+        <form>
             <div className="topBar">
-                <button className="backBtn"></button>
+                <Link className="backBtn" to="/login"/>
                 <div className="title">회원가입</div>
-                <button type="submit" className="subBtn">가입하기</button>
+                <button type="submit" className="subBtn"  onClick={handleSubmit}>가입하기</button>
             </div>
             <div className="typeInGroup">
                 <div className="typeIn">
-                    <p className="inputTitle">닉네임</p>
-                    <input className="input" type="name" placeholder="Name" onChange={e=>setName(e.target.value)} />
+                    <p className="inputTitle">이름</p>
+                    <input 
+                     className="input" 
+                     name="username" 
+                     placeholder="Name" 
+                     onChange={handleChange} 
+                     required
+                    />
                 </div>
                 <div className="typeIn">
-                    <p className="inputTitle">아이디</p>
-                    <input className="input" type="id" placeholder="ID" onChange={e=>setID(e.target.value)}/>
+                    <p className="inputTitle">닉네임</p>
+                    <input 
+                     className="input" 
+                     name="nickname"  
+                     placeholder="ID" 
+                     onChange={handleChange} 
+                     required
+                    />
                 </div>
                 <div className="typeIn">
                     <p className="inputTitle">비밀번호</p>
-                    <input className="input" type="pw" placeholder="PW" onChange={e=>setPW(e.target.value)}/>
+                    <input 
+                     className="input" 
+                     name="password1" 
+                     type="password" 
+                     placeholder="PW" 
+                     onChange={handleChange} 
+                     required
+                    />
                 </div>
                 <div className="typeIn">
                     <p className="inputTitle">비밀번호 확인</p>
-                    <input className="input" type="pw" placeholder="PW" onChange={e=>setPW(e.target.value)}/>
+                    <input 
+                     className="input" 
+                     name="password2"
+                     type="password" 
+                     placeholder="PW" 
+                     onChange={handleChange} 
+                     required
+                    />
                 </div>
                 <div className="typeIn">
                     <p className="inputTitle">이메일</p>
-                    <input className="input" type="email" placeholder="email" onChange={e=>setPW(e.target.value)}/>
+                    <input 
+                     className="input" 
+                     name="email" 
+                     placeholder="email" 
+                     onChange={handleChange} 
+                     required
+                    />
                 </div>
                 <div className="typeIn">
                     <p className="inputTitle">휴대폰 번호</p>
                     <div className="phonNumber">
-                        <input className="input" type="text" placeholder="000" onChange={e=>setPW(e.target.value)}/>
+                        <input className="input" type="text" name='phone1' placeholder="000" onChange={handleChange} required/>
                         <p>-</p>
-                        <input className="input" type="text" placeholder="0000" onChange={e=>setPW(e.target.value)}/>
+                        <input className="input" type="text" name='phone2' placeholder="0000" onChange={handleChange} required/>
                         <p>-</p>
-                        <input className="input" type="text" placeholder="0000" onChange={e=>setPW(e.target.value)}/>
+                        <input className="input" type="text" name='phone3' placeholder="0000" onChange={handleChange } required/>
                     </div>
                 </div>
             </div>
