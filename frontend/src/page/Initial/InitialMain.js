@@ -1,19 +1,23 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
-import {Link} from 'react-router-dom';
+import Nav from "../../Componets/Nav";
+import CycleList from "../../Componets/CycleList";
+import MainFormContainer from '../../styles/MainForm.js';
+import InitialPet from "../../Componets/InitialPet";
 
 function InitialMain(){
     return(
-        <>
-            <div>
-                초기 메인화면
-            </div>
-            <Link to="/CreatePet">
-                <button>반려동물 찾기</button>
-            </Link>
-            <Link to="/Login">
-                <button>새로 등록하기</button>
-            </Link>
-        </>
+        <MainFormContainer>
+            <Nav/>
+            <CycleList/>
+            <div style={{
+                fontWeight: '700',
+                fontSize: '19px',
+                paddingLeft:'15px'
+            }}>나의 반려동물 리스트</div>
+            <InitialPet/>
+        </MainFormContainer>
     );
 }
 export default InitialMain;
+

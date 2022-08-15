@@ -8,6 +8,7 @@ import ModifyMember from './page/Initial/ModifyMember';
 import { useState } from 'react';
 import Main from './page/MainPage/Main';
 import PetProfile from './page/MainPage/PetProfile';
+import TotalContainer from './styles/TotalForm';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   const[petlist,setPetlist]=useState([]);
 
   return (
-    <>
+    <TotalContainer>
       <Router>
 				<Routes>
           <Route path="/" element={<Splash/>}></Route>
@@ -28,7 +29,7 @@ function App() {
           <Route path="/PetProfile/:id" element={<PetProfile/>}></Route>
 				</Routes>
 			</Router>
-    </>
+    </TotalContainer>
     );
 }
 

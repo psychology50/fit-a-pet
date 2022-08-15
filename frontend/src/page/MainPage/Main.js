@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import {Link} from 'react-router-dom';
-import Petlist from './Petlist';
+import Petlist from '../../Componets/Petlist';
 
 function Main({petlist,setPetlist}){
 
