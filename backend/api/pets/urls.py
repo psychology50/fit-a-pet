@@ -34,4 +34,10 @@ urlpatterns = [
     path('<int:pk>/events/list/', EventListView.as_view(), name='event-list'),
     path('<int:pk>/events/<int:event_pk>/delete/', EventDeleteView.as_view(), name='event-delete'),
     path('<int:pk>/events/<int:event_pk>/complete/', EventCompleteView.as_view(), name='event-complete'),
+
+    # prescriptions
+    path('<int:pk>/prescriptions/', PrescriptionCreateView.as_view(), name='prescription-create'),
+    path('<int:pk>/prescriptions/<int:prescription_pk>/', PrescriptionUpdateView.as_view(), name='prescription-update'),
+    path('<int:pk>/prescriptions/list/', PrescriptionListView.as_view(), name='prescription-list'),
+    path('<int:pk>/prescriptions/<int:prescription_pk>/delete/', PrescriptionDeleteView.as_view(), name='prescription-delete'),
 ]

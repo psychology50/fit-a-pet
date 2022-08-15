@@ -54,9 +54,14 @@ class EventUpdateSerializer(serializers.ModelSerializer):
         model = Event
         fields = ['event_name', 'date']
 
-# class EventListSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Event
-#         fields = ['event_name', 'date']
+class PrescriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prescription
+        fields = '__all__'
+
+class PrescriptionUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prescription
+        fields = ['content', 'create_dt']
 
 
