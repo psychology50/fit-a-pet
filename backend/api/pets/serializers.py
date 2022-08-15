@@ -45,8 +45,18 @@ class DetailPetSerializer(serializers.ModelSerializer):
         fields = ['pet_id', 'pet_name', 'master', 'birthday', 'code']
 
 class EventSerializer(serializers.ModelSerializer):
-    model = Event
-    fields = '__all__'
+    class Meta:
+        model = Event
+        fields = '__all__'
 
+class EventUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['event_name', 'date']
+
+# class EventListSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Event
+#         fields = ['event_name', 'date']
 
 

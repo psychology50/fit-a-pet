@@ -1,5 +1,7 @@
+from operator import invert
 from django.http import Http404
 from django.db import transaction
+from django.shortcuts import get_object_or_404
 
 from rest_framework import status
 from rest_framework.views import APIView
@@ -7,10 +9,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-from rest_framework.generics import CreateAPIView, UpdateAPIView
+from rest_framework  import generics
 
 from users.models import CustomUser
-from pets.models import Pet, Member
+from pets.models import *
 from api.users.serializers import UserListSerializer
 from .serializers import *
 from .permissions import MemberPermission
@@ -121,21 +123,105 @@ class CycleViewSet(ModelViewSet):
             pass
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class EventCreateView(CreateAPIView):
+class EventCreateView(generics.CreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, MemberPermission]
 
     def create(self, request, *args, **kwargs):
-        print(request.data)
-        request.data['pet_id'] = kwargs('pk', False)
+        request.data['pet_id'] = kwargs.pop('pk', False)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-class EventUpdateView(UpdateAPIView):
+class EventUpdateView(generics.UpdateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventUpdateSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
+    
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+
+        assert lookup_url_kwarg in self.kwargs, (
+            (self.__class__.__name__, lookup_url_kwarg)
+        )
+
+        filter_kwargs = {self.lookup_field: self.kwargs['event_pk']}
+        obj = get_object_or_404(queryset, **filter_kwargs)
+
+        self.check_object_permissions(self.request, obj)
+
+        return obj
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', True)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+
+class EventListView(generics.ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, MemberPermission]
+
+class EventDeleteView(generics.DestroyAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
+
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        # Perform the lookup filtering.
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+
+        assert lookup_url_kwarg in self.kwargs, (
+            (self.__class__.__name__, lookup_url_kwarg)
+        )
+
+        filter_kwargs = {self.lookup_field: self.kwargs['event_pk']}
+        obj = get_object_or_404(queryset, **filter_kwargs)
+
+        self.check_object_permissions(self.request, obj)
+
+        return obj
+
+class EventCompleteView(generics.GenericAPIView):
+    queryset = Event.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.is_clear == True:
+            instance.is_clear = False
+        else :
+            instance.is_clear = True
+        instance.save()
+        return Response()
+
+    def get_object(self):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        lookup_url_kwarg = self.lookup_url_kwarg or self.lookup_field
+
+        assert lookup_url_kwarg in self.kwargs, (
+            (self.__class__.__name__, lookup_url_kwarg)
+        )
+
+        filter_kwargs = {self.lookup_field: self.kwargs['event_pk']}
+        obj = get_object_or_404(queryset, **filter_kwargs)
+
+        # May raise a permission denied
+        self.check_object_permissions(self.request, obj)
+
+        return obj

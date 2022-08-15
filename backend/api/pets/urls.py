@@ -30,5 +30,8 @@ urlpatterns = [
     
     # events
     path('<int:pk>/events/', EventCreateView.as_view(), name='event-create'),
-    path('events/<int:pk>/', EventUpdateView.as_view(), name='event-update')
+    path('<int:pk>/events/<int:event_pk>/', EventUpdateView.as_view(), name='event-update'),
+    path('<int:pk>/events/list/', EventListView.as_view(), name='event-list'),
+    path('<int:pk>/events/<int:event_pk>/delete/', EventDeleteView.as_view(), name='event-delete'),
+    path('<int:pk>/events/<int:event_pk>/complete/', EventCompleteView.as_view(), name='event-complete'),
 ]
