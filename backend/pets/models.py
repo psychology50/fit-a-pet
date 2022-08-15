@@ -31,7 +31,7 @@ class Pet(models.Model):
         default=generate_random_slug_code,
         verbose_name="code",
     )
-    today = models.DateField(default=timezone.now().date, blank=True, null=True)
+    today = models.DateField(default=timezone.now().date, blank=True, null=True) # 지워도 될 듯????
     profile_img = models.ImageField(blank=True, null=True)
     master = models.ForeignKey(CustomUser, on_delete=models.CASCADE, db_column='user_id', related_name="master")
 
