@@ -8,8 +8,7 @@ const MainFormContainer = styled.div`
     //justify-content : center;
     flex-direction : column;
     gap:10px;
-    margin-left: auto; 
-    margin-right: auto;
+    margin:0 auto;
 `;
 
 export default MainFormContainer;
