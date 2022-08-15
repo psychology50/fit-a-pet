@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axiosInstance from '../../apis/axios'
-import { Navigate } from "react-router";
 import { useNavigate, Link } from 'react-router-dom';
 
 function SignUp() {
@@ -29,9 +28,9 @@ function SignUp() {
             .post('users/signup/', {
                 nickname: data.nickname,
                 username: data.username,
-                password: data.password,
+                password: data.password1,
                 email: data.email,
-                phone: data.phone1 + data.phone2 + data.phone3,
+                phone: data.phone1 + '-' + data.phone2 + '-' + data.phone3,
             })
             .then((res) => {
                 navigate('/login');
@@ -40,14 +39,12 @@ function SignUp() {
             })
     }
 
-    //  <Navigate to="/login"/>
-
     return(
         <form>
             <div className="topBar">
                 <Link className="backBtn" to="/login"/>
                 <div className="title">회원가입</div>
-                <button type="submit" className="subBtn"  onClick={handleSubmit}>가입하기</button>
+                <button type="submit" className="subBtn" onClick={handleSubmit}>가입하기</button>
             </div>
             <div className="typeInGroup">
                 <div className="typeIn">

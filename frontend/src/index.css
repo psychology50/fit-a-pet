@@ -14,8 +14,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* this is device size */
-
-
+  width: 375px;
+  height: 812px;
+  /* 가로 세로 중앙정렬 */
+  margin: 0 auto;
 }
 
 @font-face {
