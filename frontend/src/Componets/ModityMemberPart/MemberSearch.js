@@ -4,7 +4,7 @@ import axios from "axios";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import MemberSearchNav from "./MemberSearchNav";
-import searchimg from '../image/search-line.png';
+import searchimg from '../../image/search-line.png';
 
 
 function MemberSearch({user,setUser}){
