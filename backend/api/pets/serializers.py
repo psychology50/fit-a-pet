@@ -73,6 +73,7 @@ class DetailPetSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
+        ordering = ['-date']
         fields = '__all__'
 
 class EventUpdateSerializer(serializers.ModelSerializer):
