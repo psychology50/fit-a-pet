@@ -64,4 +64,12 @@ class PrescriptionUpdateSerializer(serializers.ModelSerializer):
         model = Prescription
         fields = ['content', 'create_dt']
 
+class ActiveImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ActiveImage
+        fields = ['image']
 
+class ActiveImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ActiveImage
+        fields = '__all__'

@@ -295,3 +295,12 @@ class PrescriptionDeleteView(generics.DestroyAPIView):
         self.check_object_permissions(self.request, obj)
 
         return obj
+
+class ActiveImagesGenerics(generics.ListCreateAPIView):
+    queryset = ActiveImage.objects.all()
+    serializer_class = ActiveImagesSerializer
+
+class ActiveImageGenerics(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ActiveImage.objects.all()
+    serializer_class = ActiveImageSerializer
+    lookup_field = 'image_id'
