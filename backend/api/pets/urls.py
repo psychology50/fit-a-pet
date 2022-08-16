@@ -10,6 +10,7 @@ router.register('', PetViewSet)
 
 cycle_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
 cycle_router.register(r'cycles', CycleViewSet, basename = "pet-cycle")
+
 """
 event_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
 event_router.register(r'events', EventViewSet, basename = "pet-events")
@@ -40,4 +41,7 @@ urlpatterns = [
     path('<int:pk>/prescriptions/<int:prescription_pk>/', PrescriptionUpdateView.as_view(), name='prescription-update'),
     path('<int:pk>/prescriptions/list/', PrescriptionListView.as_view(), name='prescription-list'),
     path('<int:pk>/prescriptions/<int:prescription_pk>/delete/', PrescriptionDeleteView.as_view(), name='prescription-delete'),
+
+    path('<int:pk>/ActiveImages/', ActiveImagesGenerics.as_view(), name='ActiveImage-lc'),
+    path('<int:pk>/ActiveImages/<int:image_id>/', ActiveImageGenerics.as_view(), name='ActiveImage-rud')
 ]

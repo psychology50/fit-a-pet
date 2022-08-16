@@ -44,3 +44,4 @@ class CycleAdmin(admin.ModelAdmin):
 class AchieveCycleAdmin(admin.ModelAdmin):
     ordering = ('detail_id',)
     list_display = ('achieve_id', 'detail_id', 'date',)
+
