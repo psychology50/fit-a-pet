@@ -1,9 +1,8 @@
 import React,{useState} from "react";
-import {Link} from 'react-router-dom';
 import PetAddContainer from "../../styles/PetAddForm";
-import Petinfo from "../../Componets/Petinfo";
-import PetMember from "../../Componets/PetMember";
-import CreatePetNav from "../../Componets/CreatePetNav";
+import Petinfo from "../../Componets/CreatePetPart/Petinfo";
+import PetMember from "../../Componets/CreatePetPart/PetMember";
+import CreatePetNav from "../../Componets/CreatePetPart/CreatePetNav";
 
 function CreatePet(){
     const userimg={

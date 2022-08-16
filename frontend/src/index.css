@@ -7,15 +7,12 @@
     url('./styles/fonts/NotoSansKR-Light.otf') format('truetype');
 }
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* this is device size */
-  width: 375px;
-  height: 812px;
+
   /* 가로 세로 중앙정렬 */
   margin: 0 auto;
 }

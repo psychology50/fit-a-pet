@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react"
 import styled from 'styled-components';
-import logoimg from '../image/pit-a-pet-logo2.png';
-import alarmimg from '../image/alarm.png';
-import settingimg from '../image/setting.png';
-import userimg from '../image/userimg.png';
+import logoimg from '../../image/pit-a-pet-logo2.png';
+import alarmimg from '../../image/alarm.png';
+import settingimg from '../../image/setting.png';
+import userimg from '../../image/userimg.png';
+import {Link} from 'react-router-dom';
 
 function Nav(){
     const alarmimgCSS={
@@ -39,7 +40,9 @@ function Nav(){
 
     return(
         <NavBar>
-            <button style={userimgCSS}></button>
+            <Link to="/UserEdit">
+                <button style={userimgCSS}></button>
+            </Link>
             <img
             src={logoimg} 
             style={{

@@ -1,28 +1,23 @@
-import axios from "axios";
-import React, { useEffect } from "react";
-import {Link} from 'react-router-dom';
-import Petlist from '../../Componets/Petlist';
+/* eslint-disable jsx-a11y/alt-text */
+import React from "react";
+import Nav from "../../Componets/MainPart/Nav";
+import CycleList from "../../Componets/MainPart/CycleList";
+import MainFormContainer from '../../styles/MainForm.js';
+import InitialPet from "../../Componets/MainPart/InitialPet";
 
-function Main({petlist,setPetlist}){
-
-    useEffect(()=>{
-        axios.get("/data/petlist.json").then((res)=>{
-            setPetlist(res.data.petlist);
-        })
-    },[setPetlist]);
-
-
+function Main(){
     return(
-        <>
-            <div>
-                메인화면
-            </div>
-            <div>
-                {petlist.map((petlist)=>{
-                    return <Petlist key={`key-${petlist.id}`} petlist={petlist}/>
-                })}
-            </div>
-        </>
+        <MainFormContainer>
+            <Nav/>
+            <CycleList/>
+            <div style={{
+                fontWeight: '700',
+                fontSize: '19px',
+                paddingLeft:'15px'
+            }}>나의 반려동물 리스트</div>
+            <InitialPet/>
+        </MainFormContainer>
     );
 }
 export default Main;
+

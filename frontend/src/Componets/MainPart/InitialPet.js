@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import {Link} from 'react-router-dom';
-import catlogoimg from '../image/catlogo.png';
+import catlogoimg from '../../image/catlogo.png';
 import styled from 'styled-components';
 
 function InitialPet(){
