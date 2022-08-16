@@ -12,4 +12,3 @@ class MemberPermission(BasePermission):
         else:
             member = user.member_set.values_list('pet_id__pet_id', flat=True)
             return int(pet_id) in member
-

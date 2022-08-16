@@ -4,12 +4,11 @@ from .models import *
 @admin.register(Pet)
 class PetAdmin(admin.ModelAdmin):
     ordering = ('master',)
-    list_display = ('pet_id', 'pet_name', 'code', 'today', 'master')
+    list_display = ('pet_id', 'pet_name', 'code', 'master',)
 
-    fieldsets = (
-        (None, {'fields': ('today',)}),
-        ('Personal', {'fields': ('pet_name', 'birthday', 'profile_img', 'master')})
-    )
+    fieldsets = [
+        ('Personal', {'fields': ('pet_name', 'gender', 'birthday', 'profile_img', 'master',),})
+    ]
 
 @admin.register(Member)
 class MemberAdmin(admin.ModelAdmin):
@@ -34,9 +33,15 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(Cycle)
 class CycleAdmin(admin.ModelAdmin):
     ordering = ('pet_id', 'cycle_id',)
-    list_display = ('cycle_id', 'cycle_name', 'pet_id',)
+    list_display = ('cycle_id', 'pet_id', 'cycle_name', )
+
+@admin.register(CycleDetail)
+class CycleAdmin(admin.ModelAdmin):
+    ordering = ('cycle_id', 'detail_id',)
+    list_display = ('detail_id', 'cycle_id', 'time',)
 
 @admin.register(AchieveCycle)
 class AchieveCycleAdmin(admin.ModelAdmin):
-    ordering = ('cycle_id',)
-    list_display = ('achieve_id', 'cycle_id', 'date',)
+    ordering = ('detail_id',)
+    list_display = ('achieve_id', 'detail_id', 'date',)
+
