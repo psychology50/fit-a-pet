@@ -339,8 +339,10 @@ class PrescriptionDeleteView(generics.DestroyAPIView):
 class ActiveImagesGenerics(generics.ListCreateAPIView):
     queryset = ActiveImage.objects.all()
     serializer_class = ActiveImagesSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
 
 class ActiveImageGenerics(generics.RetrieveUpdateDestroyAPIView):
     queryset = ActiveImage.objects.all()
     serializer_class = ActiveImageSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
     lookup_field = 'image_id'
