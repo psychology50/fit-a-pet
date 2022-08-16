@@ -42,7 +42,7 @@ class PetViewSet(ModelViewSet):
     serializer_class = PetSerializer
 
     def get_permissions(self):
-        if self.action == 'create' or self.action == 'list':
+        if self.action == 'create' or self.action == 'list' or self.action == 'event_list':
             permission_classes = [IsAuthenticated]
         else:
             permission_classes = [IsAuthenticated, MemberPermission]
@@ -87,6 +87,14 @@ class PetViewSet(ModelViewSet):
         pet_list = self.queryset.filter(pet_id__in=member.values_list('pet_id')).order_by('pet_id')
         serializer = ListPetSerializer(pet_list, many=True)
         return Response(serializer.data)
+
+    @action(methods=['GET'], detail=False)
+    def event_list(self, request):
+        event_list = self.queryset.filter(member__user_id=request.user.user_id)\
+                                  .values_list('event__event_id', flat=True)
+        event_query = Event.objects.filter(event_id__in = event_list).filter(is_clear = False).order_by('date')
+        serializer = EventSerializer(event_query, many=True)        
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     @action(methods=['GET'], detail=True)
     def member_list(self, request, *args, **kwargs):
