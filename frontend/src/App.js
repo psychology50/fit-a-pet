@@ -10,7 +10,7 @@ import Main from './page/MainPage/Main';
 import PetProfile from './page/MainPage/PetProfile';
 import TotalContainer from './styles/TotalForm';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import MyProfile from './page/Profile/MyProfile'
+import MyPetProfile from './page/PetProfile/MyPetProfile';
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
           <Route path="/CreatePet" element={<CreatePet/>}></Route>
           <Route path="/ModifyMember" element={<ModifyMember/>}></Route>
           <Route path="/PetProfile/:id" element={<PetProfile/>}></Route>
-          <Route path="/MyProfile" element={<MyProfile/>}></Route>
+          <Route path="/MyPetProfile" element={<MyPetProfile/>}></Route>
 				</Routes>
 			</Router>
     </TotalContainer>
