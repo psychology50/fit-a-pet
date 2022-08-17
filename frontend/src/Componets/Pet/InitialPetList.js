@@ -20,10 +20,10 @@ function InitialPet(){
                     등록된 반려동물이 없어요...
                 </div>
                 <div className="InitialAdd-btn">
-                    <Link to="/ModifyMember">
+                    <Link to="/SelectMemberPage">
                       <button className="codeInput">코드 입력하기</button>
                     </Link>
-                    <Link to="/CreatePet">
+                    <Link to="/CreatePetPage">
                         <button className="newPet">새로 등록하기</button>
                     </Link>
                 </div>

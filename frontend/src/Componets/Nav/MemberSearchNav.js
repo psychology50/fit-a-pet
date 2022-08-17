@@ -2,33 +2,32 @@ import React,{useState} from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-import backimg from "../../image/back-button.png";
+import ximg from "../../image/x-btn.png";
 
-function CreatePetNav(){
-    const backimgCSS={
-        background:`url(${backimg})`,
+function MemberSearchNav(){
+    const ximgCSS={
+        background:`url(${ximg})`,
         backgroundSize:'cover',
-        position: 'relative',
-        width: '10px',
-        height: '23px',
-        left:'5%',
+        width: '16px',
+        height: '16px',
+        left:'20%',
         top: '40%',
         border:'none'
     }
 
     return(
         <NavBar>
-            <Link to="/Main">
-                <button style={backimgCSS}></button>
+            <Link to="/CreatePetPage">
+                <button style={ximgCSS}></button>
             </Link>     
-            <div className="title">새 반려동물 프로필</div>
-            <Link to="/Main" >
-                <button className="PetAdd-btn">등록하기</button>
+            <div className="title">멤버 검색</div>
+            <Link to="/CreatePetPage" >
+                <button className="MemberAdd-btn">추가하기</button>
             </Link>
         </NavBar>      
     );
 }
-export default CreatePetNav;
+export default MemberSearchNav;
 
 const NavBar=styled.nav`
     display:flex;
@@ -41,27 +40,26 @@ const NavBar=styled.nav`
         border-radius:50px;
         box-shadow:0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
     }
-    .title{
-        width:160px;
-        height:26px;
+    .title{       
+        width: 71px;
+        height: 26px;
         font-size: 18px;
-        left:27%;
+        left:33%;
         top:40%;
     }
-    .PetAdd-btn{
+    .MemberAdd-btn{
         background:#F8F8F8;
         color:#A6A6A6;
         cursor:pointer;
         width: 80px;
         height: 23px;
-        left:180%;
+        left:253%;
         top:40%;
         font-size: 16px;
         line-height: 23px;
         border:none;
-
     }
-    .PetAdd-btn:hover{
+    .MemberAdd-btn:hover{
         color:#FFA800;
     }
 `;

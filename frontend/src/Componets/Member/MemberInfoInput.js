@@ -10,7 +10,7 @@ function PetMember(){
             <div className="PetmemberTitle">
                 반려동물 관리 멤버
             </div>
-            <Link to="/ModifyMember">
+            <Link to="/SelectMemberPage">
                 <button className="Memberadd-btn">+ 멤버 추가하기</button>
             </Link>
         </PetMemberBox>

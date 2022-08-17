@@ -1,13 +1,13 @@
 import './App.css';
-import Splash from './page/Start/Splash';
-import Login from './page/Start/Login';
-import SignUp from './page/Start/SignUp';
-import CreatePet from './page/MainPage/CreatePet';
-import ModifyMember from './page/MainPage/ModifyMember';
+import Splash from './page/Splash';
+import LoginPage from './page/Auth/LoginPage';
+import RegisterPage from './page/Auth/RegisterPage';
+import CreatePetPage from './page/Pet/CreatePetPage.js';
+import SelectMemberPage from './page/Member/SelectMemberPage';
 import { useState } from 'react';
-import Main from './page/MainPage/Main';
+import MainPage from './page/Main/MainPage';
 import TotalContainer from './styles/TotalForm';
-import UserEdit from './page/User/UserEdit';
+import MyProfile from './page/Auth/MyProfile';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -19,12 +19,12 @@ function App() {
       <Router>
 				<Routes>
           <Route path="/" element={<Splash/>}></Route>
-					<Route path="/Login" element={<Login/>}></Route>
-          <Route path="/SignUp" element={<SignUp/>}></Route>
-          <Route path="/Main" element={<Main/>}></Route>
-          <Route path="/CreatePet" element={<CreatePet/>}></Route>
-          <Route path="/ModifyMember" element={<ModifyMember/>}></Route>
-          <Route path="/UserEdit" element={<UserEdit/>}></Route>
+					<Route path="/LoginPage" element={<LoginPage/>}></Route>
+          <Route path="/RegisterPage" element={<RegisterPage/>}></Route>
+          <Route path="/MainPage" element={<MainPage/>}></Route>
+          <Route path="/CreatePetPage" element={<CreatePetPage/>}></Route>
+          <Route path="/SelectMemberPage" element={<SelectMemberPage/>}></Route>
+          <Route path="/MyProfile" element={<MyProfile/>}></Route>
 				</Routes>
 			</Router>
     </TotalContainer>

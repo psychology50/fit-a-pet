@@ -12,7 +12,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   /* 가로 세로 중앙정렬 */
   margin: 0 auto;
 }

@@ -40,7 +40,7 @@ function Nav(){
 
     return(
         <NavBar>
-            <Link to="/UserEdit">
+            <Link to="/MyProfile">
                 <button style={userimgCSS}></button>
             </Link>
             <img

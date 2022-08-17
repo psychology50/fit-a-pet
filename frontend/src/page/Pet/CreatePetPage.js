@@ -1,8 +1,8 @@
 import React,{useState} from "react";
 import PetAddContainer from "../../styles/PetAddForm";
-import Petinfo from "../../Componets/CreatePetPart/Petinfo";
-import PetMember from "../../Componets/CreatePetPart/PetMember";
-import CreatePetNav from "../../Componets/CreatePetPart/CreatePetNav";
+import PetInfoInput from "../../Componets/Pet/PetInfoInput";
+import MemberInfoInput from "../../Componets/Member/MemberInfoInput";
+import CreatePetNav from "../../Componets/Nav/CreatePetNav";
 
 function CreatePet(){
     const userimg={
@@ -49,8 +49,8 @@ function CreatePet(){
                     onChange={saveFileImage}
                 ></input>
             </div>
-            <Petinfo/>
-            <PetMember/>
+            <PetInfoInput/>
+            <MemberInfoInput/>
         </PetAddContainer>
     );
 }
