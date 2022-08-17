@@ -9,6 +9,7 @@ import MainPage from './page/Main/MainPage';
 import TotalContainer from './styles/TotalForm';
 import MyProfile from './page/Auth/MyProfile';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import PetProfile from './page/Pet/PetProfile';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path="/CreatePetPage" element={<CreatePetPage/>}></Route>
           <Route path="/SelectMemberPage" element={<SelectMemberPage/>}></Route>
           <Route path="/MyProfile" element={<MyProfile/>}></Route>
+          <Route path="/PetProfile" element={<PetProfile/>}></Route>
 				</Routes>
 			</Router>
     </TotalContainer>

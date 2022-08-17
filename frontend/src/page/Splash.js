@@ -11,7 +11,7 @@ function Splash(){
                 관리기록 앱
                 </p>
             </div>
-            <Link to="/Login">
+            <Link to="/LoginPage">
                 <button>시작</button>
             </Link>
         </>
