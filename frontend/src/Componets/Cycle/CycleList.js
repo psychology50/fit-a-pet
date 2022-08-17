@@ -8,7 +8,7 @@ function CycleList(){
             <div className="Cycletitle">
                 모든 스케줄
             </div>
-            <div className="Cyclecontent">등록된 반려동물이 없어 예정된 스케줄을 조회할 수 없어요.</div>
+            <div className="Cyclecontent">스케줄 리스트들</div>
         </Cycle>
     );
 }

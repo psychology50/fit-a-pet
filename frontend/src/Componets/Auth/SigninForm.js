@@ -6,7 +6,7 @@ import axiosInstance from "../../apis/axios";
 // import styled from 'styled-components';
 import '../../styles/Login.css'
 
-function StartLoginForm(){
+function SignInForm(){
     const navigate = useNavigate()
     const initData = Object.freeze({
         nickname: '',
@@ -70,7 +70,7 @@ function StartLoginForm(){
         </form>
     );
 }
-export default StartLoginForm;
+export default SignInForm;
 
 // styled-components here
 // const name=styled.div`

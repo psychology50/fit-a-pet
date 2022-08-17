@@ -1,13 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React,{useEffect, useState} from "react";
 import axios from "axios";
-import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import MemberSearchNav from "../Nav/MemberSearchNav";
 import searchimg from '../../image/search-line.png';
+import Nav from "../Nav/Nav";
 
-
-function MemberSearch({user,setUser}){
+function SearchMember({user,setUser}){
     useEffect(()=>{
         axios.get("/data/user.json").then((res)=>{
             setUser(res.data.user);
@@ -16,7 +14,7 @@ function MemberSearch({user,setUser}){
 
     return(
         <MemberSearchBox>
-            <MemberSearchNav/>
+            <Nav title={"멤버 검색"} btnName={"추가하기"} BackLink={"/CreatePetPage"} EndLink={"/CreatePetPage"}/>
             <div className="user-search">
                 <img 
                 src={searchimg} 
@@ -50,7 +48,7 @@ function MemberSearch({user,setUser}){
         </MemberSearchBox>
     );
 }
-export default MemberSearch;
+export default SearchMember;
 const MemberSearchBox=styled.div`
     width: 375px;
     height: 812px;

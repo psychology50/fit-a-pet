@@ -3,9 +3,9 @@
 // import { useNavigate, Link } from 'react-router-dom';
 import SignUpForm from '../../Componets/Auth/SignUpForm';
 
-function SignUp(){
+function RegisterPage(){
     return (
         <SignUpForm></SignUpForm>
     )
 }
-export default SignUp;
+export default RegisterPage;

@@ -34,7 +34,7 @@ function SignUpForm() {
                 phone: data.phone1 + '-' + data.phone2 + '-' + data.phone3,
             })
             .then((res) => {
-                navigate('/login');
+                navigate('/LoginPage');
                 console.log(res) // 디버깅용
                 console.log(res.data)
             })

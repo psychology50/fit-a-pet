@@ -4,10 +4,10 @@ import LoginPage from './page/Auth/LoginPage';
 import RegisterPage from './page/Auth/RegisterPage';
 import CreatePetPage from './page/Pet/CreatePetPage.js';
 import SelectMemberPage from './page/Member/SelectMemberPage';
-import { useState } from 'react';
 import MainPage from './page/Main/MainPage';
 import TotalContainer from './styles/TotalForm';
 import MyProfile from './page/Auth/MyProfile';
+import CreateCyclePage from './page/Cycle/CreateCyclePage';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import PetProfile from './page/Pet/PetProfile';
 
@@ -27,6 +27,7 @@ function App() {
           <Route path="/SelectMemberPage" element={<SelectMemberPage/>}></Route>
           <Route path="/MyProfile" element={<MyProfile/>}></Route>
           <Route path="/PetProfile" element={<PetProfile/>}></Route>
+          <Route path="/CreateCyclePage" element={<CreateCyclePage/>}></Route>
 				</Routes>
 			</Router>
     </TotalContainer>
