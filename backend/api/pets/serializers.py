@@ -9,6 +9,11 @@ from pets.models import *
 
 CustomUser = get_user_model()
 
+class CreateMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Member
+        fields = '__all__'
+
 class MemberSerializer(serializers.ModelSerializer):
     master = serializers.StringRelatedField()
     member = serializers.SerializerMethodField(source='member_set')

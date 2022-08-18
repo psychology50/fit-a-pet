@@ -61,12 +61,17 @@ class PetViewSet(ModelViewSet):
 
         with transaction.atomic():
             instance = serializer.save()
+            print("first")
             id_list = CustomUser.objects.filter(nickname__in=member).values_list('user_id', flat=True)
             for id in id_list: # create Pet
-                s = MemberSerializer(data={"user_id": id, "pet_id": instance.pet_id})
+                print("1")
+                s = CreateMemberSerializer(data={"user_id": id, "pet_id": instance.pet_id})
+                print("2")
                 s.is_valid(raise_exception=True)
+                print("3")
                 s.save()
-                
+                print("4")
+            print("second")
             cycle_data = create_init_cycle_data(instance.pet_id)
             for data in cycle_data: # create Regular Cycle
                 detail_data = data.pop('detail', False)
