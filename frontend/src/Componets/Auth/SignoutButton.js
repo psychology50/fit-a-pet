@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axiosInstance from '../../apis/axios'
-import { useHistory, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignoutButton() {
     const navigate = useNavigate();

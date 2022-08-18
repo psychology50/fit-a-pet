@@ -30,7 +30,7 @@ axiosInstance.interceptors.response.use(
             error.response.status === 401 &&
             originalRequest.url === baseURL + 'signin/refresh/'
         ) {
-            window.location.href = '/login/';
+            window.location.href = '/loginPage/';
             return Promise.reject(error);
         }
 
@@ -64,11 +64,11 @@ axiosInstance.interceptors.response.use(
                         .catch((error) => {console.log(error)})
                 } else {
                     console.log('Refresh token is expired', tokenParts.exp, now);
-                    window.location.href = '/login/';
+                    window.location.href = '/loginPage/';
                 }
             } else {
                 console.log('Refresh token not available.');
-                window.location.href = '/login/';
+                window.location.href = '/loginPage/';
             }
 
             return Promise.reject(error);
