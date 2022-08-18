@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-import backimg from "../../image/back-button.png";
+import backimg from "../../assets/backBtn.svg";
 
 function Nav({BackLink,EndLink,title,btnName}){
     // 네브바 뭉쳐보자ㅏㅏㅏㅏㅏㅏ
@@ -10,11 +10,11 @@ function Nav({BackLink,EndLink,title,btnName}){
         background:`url(${backimg})`,
         backgroundSize:'cover',
         position: 'relative',
-        width: '10px',
-        height: '23px',
+        width: '14px',
+        height: '24px',
         left:'150%',
         top: '40%',
-        border:'none'
+        border:'none',
     }
 
     return(
@@ -39,7 +39,8 @@ const NavBar=styled.nav`
         position:relative;
     }
     button:hover{
-        border-radius:50px;     
+        /* border-radius:50px;      */
+        cursor: pointer;
     }
     .title{
         width:160px;

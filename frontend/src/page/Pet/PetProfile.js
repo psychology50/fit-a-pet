@@ -3,7 +3,6 @@ import React from "react";
 // import {Link} from 'react-router-dom';
 import PetProfileNav from "../../Componets/Nav/PetProfileNav";
 import PetInfo from "../../Componets/Pet/PetInfo";
-import styled from 'styled-components';
 import CycleInfo from "../../Componets/Cycle/CycleInfo";
 import PetProfileTap from "../../Componets/Pet/PetProfileTap";
 // import styled from 'styled-components';
