@@ -21,9 +21,14 @@ axiosInstance.interceptors.response.use(
     },
     async function (error) {
         const originalRequest = error.config;
-
+        
         if (typeof error.response === 'undefined') { // 서버가 문제인 경우
             alert('예기치 못한 에러가 발생했습니다.')
+            return Promise.reject(error);
+        }
+
+        if (error.response.data.nickname[0] === 'user with this nickname already exists.') {
+            alert('이미 사용중인 닉네임입니다.')
             return Promise.reject(error);
         }
 

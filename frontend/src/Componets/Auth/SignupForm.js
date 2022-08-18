@@ -1,7 +1,7 @@
 import React from "react";
 import '../../styles/SignUp.css';
 
-function SignUpForm({handleChange}) { 
+function SignUpForm({inputRef}) { 
     return(
         <div className="SignUpForm">
             <div className="typeInGroup">
@@ -11,7 +11,8 @@ function SignUpForm({handleChange}) {
                      className="input" 
                      name="username" 
                      placeholder="Name" 
-                     onChange={handleChange} 
+                    //  onChange={handleChange} 
+                    ref={el => inputRef.current['username'] = el}
                      required
                     />
                 </div>
@@ -21,7 +22,8 @@ function SignUpForm({handleChange}) {
                      className="input" 
                      name="nickname"  
                      placeholder="ID" 
-                     onChange={handleChange} 
+                    //  onChange={handleChange} 
+                    ref={el => inputRef.current['nickname'] = el}
                      required
                     />
                 </div>
@@ -32,7 +34,8 @@ function SignUpForm({handleChange}) {
                      name="password1" 
                      type="password" 
                      placeholder="PW" 
-                     onChange={handleChange} 
+                    //  onChange={handleChange} 
+                    ref={el => inputRef.current['password1'] = el}
                      required
                     />
                 </div>
@@ -43,7 +46,8 @@ function SignUpForm({handleChange}) {
                      name="password2"
                      type="password" 
                      placeholder="PW" 
-                     onChange={handleChange} 
+                    //  onChange={handleChange} 
+                    ref={el => inputRef.current['password2'] = el}
                      required
                     />
                 </div>
@@ -53,18 +57,34 @@ function SignUpForm({handleChange}) {
                      className="input" 
                      name="email" 
                      placeholder="email" 
-                     onChange={handleChange} 
+                    //  onChange={handleChange} 
+                    ref={el => inputRef.current['email'] = el}
                      required
                     />
                 </div>
                 <div className="typeIn">
                     <p className="inputTitle">휴대폰 번호</p>
                     <div className="phonNumber">
-                        <input className="input" type="text" name='phone1' placeholder="000" onChange={handleChange} required/>
+                        <input 
+                         className="input" 
+                         type="text" 
+                         name='phone1' 
+                         placeholder="000" 
+                         ref={el => inputRef.current['phone1'] = el}/>
                         <p>-</p>
-                        <input className="input" type="text" name='phone2' placeholder="0000" onChange={handleChange} required/>
+                        <input 
+                         className="input" 
+                         type="text" 
+                         name='phone2' 
+                         placeholder="0000" 
+                         ref={el => inputRef.current['phone2'] = el}/>
                         <p>-</p>
-                        <input className="input" type="text" name='phone3' placeholder="0000" onChange={handleChange } required/>
+                        <input 
+                         className="input" 
+                         type="text" 
+                         name='phone3' 
+                         placeholder="0000" 
+                         ref={el => inputRef.current['phone3'] = el}/>
                     </div>
                 </div>
             </div>
