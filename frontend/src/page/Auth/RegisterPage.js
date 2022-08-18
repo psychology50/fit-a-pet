@@ -4,7 +4,7 @@ import BackBtn from "../../Componets/Btn/BackBtn";
 import SubmitBtn from '../../Componets/Btn/SubmitBtn';
 import '../../styles/SignUp.css';
 
-function SignUp(){
+function RegisterPage(){
     const initData = Object.freeze({
         nickname: '',
         username: '',
@@ -18,7 +18,7 @@ function SignUp(){
             ...data, [e.target.name]: e.target.value.trim(),
         });
     }, [data])
-
+    
     return (
         <>
         <div className="topBar">
@@ -30,4 +30,4 @@ function SignUp(){
         </>
     )
 }
-export default SignUp;
+export default RegisterPage;

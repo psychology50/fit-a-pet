@@ -1,7 +1,7 @@
 import React from "react";
 import '../../styles/SignUp.css';
 
-function SignUpForm({handleChange}) {
+function SignUpForm({handleChange}) { 
     return(
         <div className="SignUpForm">
             <div className="typeInGroup">

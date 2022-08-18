@@ -2,11 +2,11 @@ import React from "react";
 // import { useState } from "react";
 // import {Link, useNavigate} from 'react-router-dom';
 // import axiosInstance from "../../apis/axios";
-import StartLoginForm from "../../Componets/Auth/SigninForm";
+import SignInForm from "../../Componets/Auth/SignInForm";
 
-function Login(){
+function LoginPage(){
     return(
-        <StartLoginForm></StartLoginForm>
+        <SignInForm></SignInForm>
     );
 }
-export default Login;
+export default LoginPage;

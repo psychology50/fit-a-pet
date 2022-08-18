@@ -26,7 +26,7 @@ const GenderBox = (props) => {
 	);
 };
 
-function Petinfo(){
+function PetInfoInput(){
 
     return(
         <PetinfoBox>
@@ -49,7 +49,7 @@ function Petinfo(){
         </PetinfoBox>
     );
 }
-export default Petinfo;
+export default PetInfoInput;
 
 
 

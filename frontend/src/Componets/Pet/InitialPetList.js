@@ -4,35 +4,34 @@ import {Link} from 'react-router-dom';
 import catlogoimg from '../../image/catlogo.png';
 import styled from 'styled-components';
 
-function InitialPet(){
+function InitialPetList(){
     return(
-        <InitialPetBox>
-                <img 
-                    src={catlogoimg} 
-                    style={{
-                        width: '90px',
-                        height: '90px',
-                        left: '37%',
-                        top: '10%'
-                    }}>
-                </img>
-                <div className="petcontent"> 
-                    등록된 반려동물이 없어요...
-                </div>
-                <div className="InitialAdd-btn">
-                    <Link to="/SelectMemberPage">
-                      <button className="codeInput">코드 입력하기</button>
-                    </Link>
-                    <Link to="/CreatePetPage">
-                        <button className="newPet">새로 등록하기</button>
-                    </Link>
-                </div>
-                
-            </InitialPetBox>
+        <InitialPetListBox>
+            <img 
+                src={catlogoimg} 
+                style={{
+                    width: '90px',
+                    height: '90px',
+                    left: '37%',
+                    top: '10%'
+                }}>
+            </img>
+            <div className="petcontent"> 
+                등록된 반려동물이 없어요...
+            </div>
+            <div className="InitialAdd-btn">
+                <Link to="/SelectMemberPage">
+                    <button className="codeInput">코드 입력하기</button>
+                </Link>
+                <Link to="/CreatePetPage">
+                    <button className="newPet">새로 등록하기</button>
+                </Link>
+            </div>             
+        </InitialPetListBox>
     );
-}export default InitialPet;
+}export default InitialPetList;
 
-const InitialPetBox= styled.div`
+const InitialPetListBox= styled.div`
     background:#FFFFFF;
     position:relative;
     left:8%;

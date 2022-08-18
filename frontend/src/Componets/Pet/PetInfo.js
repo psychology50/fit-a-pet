@@ -37,6 +37,8 @@ export default PetInfo;
 
 const MyProfile=styled.div`
     /* width: 295px; */
+    margin-bottom: 16px;
+    padding: 24px 0;
     height: auto;
     background-color : #ffffff;
     /* background-color : #FFA800; */

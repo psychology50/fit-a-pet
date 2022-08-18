@@ -2,9 +2,10 @@ import React,{useState} from "react";
 import PetAddContainer from "../../styles/PetAddForm";
 import PetInfoInput from "../../Componets/Pet/PetInfoInput";
 import MemberInfoInput from "../../Componets/Member/MemberInfoInput";
-import CreatePetNav from "../../Componets/Nav/CreatePetNav";
+import Nav from "../../Componets/Nav/Nav";
 
-function CreatePet(){
+
+function CreatePetPage(){
     const userimg={
         width: '134px',
         height: '134px',
@@ -29,7 +30,7 @@ function CreatePet(){
     };
     return(
         <PetAddContainer>
-            <CreatePetNav/>
+            <Nav title={"새 반려동물 프로필"} btnName={"등록하기"} BackLink={"/MainPage"} EndLink={"/MainPage"}/>
             <div className="userImage" >
                 {fileImage ? (
                     <img className="sampleImg" alt="sample" src={fileImage} style={userimg}/>
@@ -54,4 +55,4 @@ function CreatePet(){
         </PetAddContainer>
     );
 }
-export default CreatePet;
+export default CreatePetPage;

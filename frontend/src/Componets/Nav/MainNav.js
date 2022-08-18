@@ -7,7 +7,7 @@ import settingimg from '../../image/setting.png';
 import userimg from '../../image/userimg.png';
 import {Link} from 'react-router-dom';
 
-function Nav(){
+function MainNav(){
     const alarmimgCSS={
         background:`url(${alarmimg})`,
         backgroundSize:'cover',
@@ -57,7 +57,7 @@ function Nav(){
         </NavBar>
     );
 }
-export default Nav;
+export default MainNav;
 
 const NavBar=styled.nav`
     background:#FFFFFF;

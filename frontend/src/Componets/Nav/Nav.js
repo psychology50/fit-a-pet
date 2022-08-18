@@ -4,31 +4,32 @@ import styled from 'styled-components';
 
 import backimg from "../../image/back-button.png";
 
-function CreatePetNav(){
+function Nav({BackLink,EndLink,title,btnName}){
+    // 네브바 뭉쳐보자ㅏㅏㅏㅏㅏㅏ
     const backimgCSS={
         background:`url(${backimg})`,
         backgroundSize:'cover',
         position: 'relative',
         width: '10px',
         height: '23px',
-        left:'5%',
+        left:'150%',
         top: '40%',
         border:'none'
     }
 
     return(
         <NavBar>
-            <Link to="/MainPage">
+            <Link to={BackLink}>
                 <button style={backimgCSS}></button>
             </Link>     
-            <div className="title">새 반려동물 프로필</div>
-            <Link to="/MainPage" >
-                <button className="PetAdd-btn">등록하기</button>
+            <div className="title">{title}</div>
+            <Link to={EndLink}>
+                <button className="End-btn">{btnName}</button>
             </Link>
         </NavBar>      
     );
 }
-export default CreatePetNav;
+export default Nav;
 
 const NavBar=styled.nav`
     display:flex;
@@ -38,30 +39,29 @@ const NavBar=styled.nav`
         position:relative;
     }
     button:hover{
-        border-radius:50px;
-        box-shadow:0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+        border-radius:50px;     
     }
     .title{
         width:160px;
         height:26px;
         font-size: 18px;
-        left:27%;
         top:40%;
+        left:25%;
+        text-align: center;
     }
-    .PetAdd-btn{
+    .End-btn{
         background:#F8F8F8;
         color:#A6A6A6;
         cursor:pointer;
         width: 80px;
         height: 23px;
-        left:180%;
+        left:145%;
         top:40%;
         font-size: 16px;
         line-height: 23px;
         border:none;
-
     }
-    .PetAdd-btn:hover{
+    .End-btn:hover{
         color:#FFA800;
     }
 `;

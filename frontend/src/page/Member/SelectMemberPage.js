@@ -4,7 +4,7 @@ import SearchMember from "../../Componets/Member/SearchMember";
 import MemberFormContainer from '../../styles/ModifyMemberForm';
 
 
-function ModifyMember(){
+function SelectMemberPage(){
     const[user,setUser]=useState([]);
     return(
         <MemberFormContainer>
@@ -12,4 +12,4 @@ function ModifyMember(){
         </MemberFormContainer>
     );
 }
-export default ModifyMember;
+export default SelectMemberPage;
