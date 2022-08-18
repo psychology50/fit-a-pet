@@ -1,10 +1,9 @@
 import React from "react"
+import ModifyUserInfo from '../../Componets/Auth/ModifyUserInfo';
 
 function MyProfile(){
     return(
-        <div>
-           User 데이터 수정
-        </div>
+        <ModifyUserInfo/>
     );
 }
 export default MyProfile;
