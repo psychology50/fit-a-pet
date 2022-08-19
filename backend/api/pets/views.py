@@ -124,10 +124,7 @@ class CycleViewSet(ModelViewSet):
     serializer_class = CycleSerializer
 
     def get_permissions(self):
-        if self.action == 'create' or self.action == 'list':
-            permission_classes = [IsAuthenticated]
-        else:
-            permission_classes = [IsAuthenticated, MemberPermission]
+        permission_classes = [IsAuthenticated, MemberPermission]
         return [permission() for permission in permission_classes]
 
     def create(self, request, *args, **kwargs):
@@ -159,6 +156,11 @@ class CycleViewSet(ModelViewSet):
         serializer = self.get_serializer(cycles, many=True)
 
         return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def clear_cycle(self, request, *args, **kwargs):
+        
+        pass
 
     @action(methods=['DELETE'], detail=True)
     def cycle_delete(self, request, *args, **kwargs):

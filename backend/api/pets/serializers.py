@@ -67,13 +67,13 @@ class ListPetSerializer(serializers.ModelSerializer):
     cycle = CycleSerializer(many=True, source="cycle_set")
     class Meta:
         model = Pet
-        fields = ['pet_id', 'pet_name', 'birthday', 'code', 'cycle']
+        fields = ['pet_id', 'pet_name', 'gender', 'birthday', 'code', 'cycle']
 
 class DetailPetSerializer(serializers.ModelSerializer):
     master = serializers.StringRelatedField()
     class Meta:
         model = Pet
-        fields = ['pet_id', 'pet_name', 'master', 'birthday', 'code']
+        fields = ['pet_id', 'pet_name', 'gender', 'master', 'birthday', 'code']
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
