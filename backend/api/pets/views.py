@@ -177,10 +177,7 @@ class EventViewSet(ModelViewSet):
     serializer_class = EventSerializer
 
     def get_permissions(self):
-        if self.action == 'create' or self.action == 'list':
-            permission_classes = [IsAuthenticated]
-        else:
-            permission_classes = [IsAuthenticated]
+        permission_classes = [IsAuthenticated, MemberPermission]
         return [permission() for permission in permission_classes]
     
     def create(self, request, *args, **kwargs):
