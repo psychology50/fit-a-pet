@@ -344,13 +344,39 @@ class PrescriptionDeleteView(generics.DestroyAPIView):
 
         return obj
 
-class ActiveImagesGenerics(generics.ListCreateAPIView):
+class ActiveImagesGenerics(generics.ListCreateAPIView): 
     queryset = ActiveImage.objects.all()
     serializer_class = ActiveImagesSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
+
 
 class ActiveImageGenerics(generics.RetrieveUpdateDestroyAPIView):
     queryset = ActiveImage.objects.all()
     serializer_class = ActiveImageSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
     lookup_field = 'image_id'
+
+class ActiveImageRetrieveView(generics.RetrieveAPIView):
+    queryset = ActiveImage.objects.all()
+    serializer_class = ActiveImageSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+class ActiveImageUpdateView(generics.UpdateAPIView):
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+    
