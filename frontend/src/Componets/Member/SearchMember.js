@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import searchimg from '../../image/search-line.png';
 import Nav from "../Nav/Nav";
 import axiosInstance from "../../apis/axios";
+import BackBtn from "../Btn/BackBtn";
 import MemberAddBtn from "../Btn/MemberAddBtn";
 
 function SearchMember({user,setUser}){
     useEffect(()=>{
         axiosInstance.get("/users").then((res)=>{
-            setUser(res.data);
+            setUser(res.data);       
              //console.log(res.data);
             })  
     },[]);
@@ -62,7 +63,11 @@ function SearchMember({user,setUser}){
 
     return(
         <MemberSearchBox>
-            <Nav title={"멤버 검색"} btnName={"추가하기"} BackLink={"/CreatePetPage"} EndLink={"/CreatePetPage"} Value={arr}/>
+            <BackBtn url={"/CreatePetPage"}></BackBtn>
+            <MemberAddBtn data={arr}>
+
+            </MemberAddBtn>
+            {/* <Nav title={"멤버 검색"} btnName={"추가하기"} BackLink={"/CreatePetPage"} EndLink={"/CreatePetPage"} Value={arr}/> */}
             <div className="user-search">
                <img 
                     src={searchimg} 
