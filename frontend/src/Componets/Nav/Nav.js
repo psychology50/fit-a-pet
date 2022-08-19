@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useMemo} from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ import backimg from "../../image/back-button.png";
 //import backimg from "../../assets/backBtn.svg";
 
 
-function Nav({BackLink,EndLink,title,btnName,Value}){
+function Nav({BackLink,EndLink,title,btnName}){
     // 네브바 뭉쳐보자ㅏㅏㅏㅏㅏㅏ
     const backimgCSS={
         background:`url(${backimg})`,
@@ -20,7 +20,6 @@ function Nav({BackLink,EndLink,title,btnName,Value}){
         top: '40%',
         border:'none',
     }
-    console.log(Value)
 
     return(
         <NavBar>

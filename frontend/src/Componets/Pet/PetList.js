@@ -54,6 +54,10 @@ console.log(pet);
                     </form>       
                 )
             })}
+            <Link to="/CreatePetPage">
+                <button className="Petaddbtn">+</button>
+            </Link>
+            
             
         </PetListBox>
         
@@ -66,8 +70,19 @@ const PetListBox= styled.div`
     height: 300px; 
     padding:15px;
     display:flex;  
+    flex-direction : column;
     left:7%;
     width: 290px; 
+    .Petaddbtn{
+        position:relative;
+        font-size:20px;
+        top:51%;
+        left:46%;
+        width:30px;
+        height:30px;
+        border:none;
+        border-radius:50px;
+    }
     form{
         right:6%;
         width:287px;
