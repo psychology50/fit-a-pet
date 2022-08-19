@@ -3,7 +3,7 @@ from pets.models import Pet, Member
 
 class MemberPermission(BasePermission):
     def has_permission(self, request, view):
-        pet_id = view.kwargs['pk']
+        pet_id = view.kwargs['pet_pk'] if 'pet_pk' in view.kwargs.keys() else view.kwargs['pk']
         user = request.user
 
         if request.method == 'delete':

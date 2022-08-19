@@ -1,28 +1,37 @@
 import './App.css';
-import Splash from './Start/Splash';
-import Login from './Start/Login';
-import SignUp from './Start/SignUp';
-import CreatePet from './Initial/CreatePet';
-import InitialMain from './Initial/InitialMain';
-import ModifyMember from './Initial/ModifyMember';
-import Main from './Main';
+import Splash from './page/Splash';
+import LoginPage from './page/Auth/LoginPage';
+import RegisterPage from './page/Auth/RegisterPage';
+import CreatePetPage from './page/Pet/CreatePetPage.js';
+import SelectMemberPage from './page/Member/SelectMemberPage';
+import MainPage from './page/Main/MainPage';
+import TotalContainer from './styles/TotalForm';
+import MyProfile from './page/Auth/MyProfile';
+import CreateCyclePage from './page/Cycle/CreateCyclePage';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import PetProfile from './page/Pet/PetProfile';
+import PetInfoInput from './Componets/Pet/PetInfoInput';
 
 function App() {
+
+  //const[petlist,setPetlist]=useState([]);
+
   return (
-    <>
+    <TotalContainer>
       <Router>
 				<Routes>
           <Route path="/" element={<Splash/>}></Route>
-					<Route path="/Login" element={<Login/>}></Route>
-          <Route path="/SignUp" element={<SignUp/>}></Route>
-          <Route path="/InitialMain" element={<InitialMain/>}></Route>
-          <Route path="/Main" element={<Main/>}></Route>
-          <Route path="/CreatePet" element={<CreatePet/>}></Route>
-          <Route path="/ModifyMember" element={<ModifyMember/>}></Route>
+					<Route path="/LoginPage" element={<LoginPage/>}></Route>
+          <Route path="/RegisterPage" element={<RegisterPage/>}></Route>
+          <Route path="/MainPage" element={<MainPage/>}></Route>
+          <Route path="/CreatePetPage" element={<CreatePetPage/>}></Route>
+          <Route path="/SelectMemberPage" element={<SelectMemberPage/>}></Route>
+          <Route path="/MyProfile" element={<MyProfile/>}></Route>
+          <Route path="/PetProfile" element={<PetProfile/>}></Route>
+          <Route path="/CreateCyclePage" element={<CreateCyclePage/>}></Route>
 				</Routes>
 			</Router>
-    </>
+    </TotalContainer>
     );
 }
 

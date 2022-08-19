@@ -63,10 +63,9 @@ class PetViewSet(ModelViewSet):
             instance = serializer.save()
             id_list = CustomUser.objects.filter(nickname__in=member).values_list('user_id', flat=True)
             for id in id_list: # create Pet
-                s = MemberSerializer(data={"user_id": id, "pet_id": instance.pet_id})
+                s = CreateMemberSerializer(data={"user_id": id, "pet_id": instance.pet_id})
                 s.is_valid(raise_exception=True)
                 s.save()
-                
             cycle_data = create_init_cycle_data(instance.pet_id)
             for data in cycle_data: # create Regular Cycle
                 detail_data = data.pop('detail', False)
@@ -125,10 +124,7 @@ class CycleViewSet(ModelViewSet):
     serializer_class = CycleSerializer
 
     def get_permissions(self):
-        if self.action == 'create' or self.action == 'list':
-            permission_classes = [IsAuthenticated]
-        else:
-            permission_classes = [IsAuthenticated, MemberPermission]
+        permission_classes = [IsAuthenticated, MemberPermission]
         return [permission() for permission in permission_classes]
 
     def create(self, request, *args, **kwargs):
@@ -160,6 +156,11 @@ class CycleViewSet(ModelViewSet):
         serializer = self.get_serializer(cycles, many=True)
 
         return Response(serializer.data)
+
+    @action(methods=['POST'], detail=False)
+    def clear_cycle(self, request, *args, **kwargs):
+        pet_id = kwargs.pop('pet_pk', False)
+        
 
     @action(methods=['DELETE'], detail=True)
     def cycle_delete(self, request, *args, **kwargs):
@@ -393,6 +394,7 @@ class PrescriptionDeleteView(generics.DestroyAPIView):
 
         return obj
 
+
 class ActiveImageCreateView(generics.CreateAPIView):
     queryset = ActiveImage.objects.all()
     serializer_class = ActiveImageSerializer
@@ -411,9 +413,44 @@ class ActiveImageListView(generics.ListAPIView):
     serializer_class = ActiveImageSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
         
-
-class ActiveImageGenerics(generics.RetrieveUpdateDestroyAPIView):
+class ActiveImageRetrieveView(generics.RetrieveAPIView):
     queryset = ActiveImage.objects.all()
     serializer_class = ActiveImageSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
-    lookup_field = 'image_id'
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
+
+class ActiveImageUpdateView(generics.UpdateAPIView):
+    queryset = ActiveImage.objects.all()
+    serializer_class = ActiveImageSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+    
+class ActiveImageDeleteView(generics.DestroyAPIView):
+    queryset = ActiveImage.objects.all()
+    serializer_class = ActiveImageSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
