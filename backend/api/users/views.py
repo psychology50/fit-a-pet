@@ -99,14 +99,15 @@ class DeleteUserView(APIView):
 class ProfileView(APIView):
     def get(self, request, *args, **kwargs):
         user = CustomUser.objects.get(user_id=request.user.user_id)
-        if user.profile_img:
+        if user.profile_img is not None:
+            print(user.profile_img)
             return Response(
                 {
                     "user_id": user.user_id,
                     "username": user.username,
                     "email": user.email,
                     "phone": user.phone,
-                    "profile_img": user.profile_img,
+                    "profile_img": str(user.profile_img),
                 }
             )
         else:
