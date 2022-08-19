@@ -15,7 +15,12 @@ function PetProfile(props) {
   return (
     <div>
       <PetProfileNav />
-      <PetInfo name={data.pet_name} birth={data.birthday} code={data.code} />
+      <PetInfo
+        name={data.pet_name}
+        birth={data.birthday}
+        code={data.code}
+        gender={data.gender}
+      />
       <CycleInfo />
       <PetProfileTap />
     </div>

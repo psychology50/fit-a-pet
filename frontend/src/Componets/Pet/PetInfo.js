@@ -19,7 +19,7 @@ function PetInfo(props) {
       <ul className="profileage">
         <li className="sex">
           <label>성별</label>
-          <strong className="sexValue"> 수컷 </strong>
+          <strong className="sexValue"> {props.gender} </strong>
         </li>
         <li className="age">
           <label>나이</label>
