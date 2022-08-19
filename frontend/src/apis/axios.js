@@ -7,8 +7,8 @@ const axiosInstance = axios.create({
     timeout: 50000,
     headers: {
         Authorization: localStorage.getItem('access_token')
-            // ? 'JWT ' + localStorage.getItem('access_token')
-            ? null
+            ? 'JWT ' + localStorage.getItem('access_token')
+            // ? null
             : null,
         'Content-Type': 'application/json',
         accept: 'application/json',
@@ -27,8 +27,9 @@ axiosInstance.interceptors.response.use(
             return Promise.reject(error);
         }
 
-        if (error.response.data.nickname[0] === 'user with this nickname already exists.') {
-            alert('이미 사용중인 닉네임입니다.')
+        if (error.response.status === 400) {
+            if (error.response.data.nickname[0] === 'user with this nickname already exists.')
+                alert('이미 사용중인 닉네임입니다.')
             return Promise.reject(error);
         }
 

@@ -58,7 +58,8 @@ function SearchMember({user,setUser}){
         }
         setSearch('') 
     }
-        
+    
+    console.log(arr)
 
     return(
         <MemberSearchBox>

@@ -36,7 +36,7 @@ function MainPage(){
 
     return(
         <MainFormContainer>
-            <MainNav/>
+            <MainNav />
             {/* 만약 유저가 Cycle 등록 했으면 CycleList 아니면 InitialCycleList 부르기 */}
             <>
             {

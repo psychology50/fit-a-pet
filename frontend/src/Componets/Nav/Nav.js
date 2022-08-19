@@ -20,6 +20,7 @@ function Nav({BackLink,EndLink,title,btnName,Value}){
         top: '40%',
         border:'none',
     }
+    console.log(Value)
 
     return(
         <NavBar>
