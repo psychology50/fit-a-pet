@@ -107,7 +107,7 @@ class ProfileView(APIView):
                     "username": user.username,
                     "email": user.email,
                     "phone": user.phone,
-                    "profile_img": str(user.profile_img),
+                    "profile_img": "http://127.0.0.1:8000/media/" + str(user.profile_img),
                 }
             )
         else:
