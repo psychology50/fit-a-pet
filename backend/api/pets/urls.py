@@ -42,6 +42,10 @@ urlpatterns = [
     path('<int:pk>/prescriptions/list/', PrescriptionListView.as_view(), name='prescription-list'),
     path('<int:pk>/prescriptions/<int:prescription_pk>/delete/', PrescriptionDeleteView.as_view(), name='prescription-delete'),
 
-    path('<int:pk>/ActiveImages/', ActiveImageRetrieveView.as_view(), name='ActiveImage-Retrieve'),
-    path('<int:pk>/ActiveImages/<int:image_id>/', ActiveImageGenerics.as_view(), name='ActiveImage-rud')
+    # ActiveImages
+    path('<int:pk>/ActiveImages/', ActiveImageCreateView.as_view(), name='ActiveImage-create'),
+    path('<int:pk>/ActiveImages/list/', ActiveImageListView.as_view(), name='ActiveImage-list'),
+    path('<int:pk>/ActiveImages/<int:image_id>/', ActiveImageRetrieveView.as_view(), name='ActiveImage-retrieve'),
+    path('<int:pk>/ActiveImages/<int:image_id>/update/', ActiveImageUpdateView.as_view(), name='ActiveImage-update'),
+    path('<int:pk>/ActiveImages/<int:image_id>/delete/', ActiveImageDeleteView.as_view(), name='ActiveImage-delete'),
 ]
