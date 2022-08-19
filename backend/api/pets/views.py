@@ -186,7 +186,7 @@ class EventCreateView(generics.CreateAPIView):
 
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
-    serializer_class = EventUpdateSerializer
+    serializer_class = EventSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
     
     def get_object(self):
@@ -287,7 +287,7 @@ class PrescriptionCreateView(generics.CreateAPIView):
 
 class PrescriptionUpdateView(generics.UpdateAPIView):
     queryset = Prescription.objects.all()
-    serializer_class = PrescriptionUpdateSerializer
+    serializer_class = PrescriptionSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
     
     def get_object(self):
@@ -344,10 +344,24 @@ class PrescriptionDeleteView(generics.DestroyAPIView):
 
         return obj
 
-class ActiveImagesGenerics(generics.ListCreateAPIView):
+class ActiveImageCreateView(generics.CreateAPIView):
     queryset = ActiveImage.objects.all()
-    serializer_class = ActiveImagesSerializer
+    serializer_class = ActiveImageSerializer
     permission_classes = [IsAuthenticated, MemberPermission]
+
+    def create(self, request, *args, **kwargs):
+        request.data['pet_id'] = kwargs.pop('pk', False)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+class ActiveImageListView(generics.ListAPIView):
+    queryset = ActiveImage.objects.all()
+    serializer_class = ActiveImageSerializer
+    permission_classes = [IsAuthenticated, MemberPermission]
+        
 
 class ActiveImageGenerics(generics.RetrieveUpdateDestroyAPIView):
     queryset = ActiveImage.objects.all()
