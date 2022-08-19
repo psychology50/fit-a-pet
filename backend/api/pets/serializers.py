@@ -81,25 +81,15 @@ class EventSerializer(serializers.ModelSerializer):
         ordering = ['-date']
         fields = '__all__'
 
-class EventUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = ['event_name', 'date']
-
 class PrescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prescription
         fields = '__all__'
 
-class PrescriptionUpdateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Prescription
-        fields = ['content', 'create_dt']
-
 class ActiveImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveImage
-        fields = ['image']
+        fields = '__all__'
 
 class ActiveImageSerializer(serializers.ModelSerializer):
     class Meta:
