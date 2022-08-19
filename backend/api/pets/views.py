@@ -157,10 +157,10 @@ class CycleViewSet(ModelViewSet):
 
         return Response(serializer.data)
 
-    @action(methods=['GET'], detail=True)
+    @action(methods=['POST'], detail=False)
     def clear_cycle(self, request, *args, **kwargs):
+        pet_id = kwargs.pop('pet_pk', False)
         
-        pass
 
     @action(methods=['DELETE'], detail=True)
     def cycle_delete(self, request, *args, **kwargs):
