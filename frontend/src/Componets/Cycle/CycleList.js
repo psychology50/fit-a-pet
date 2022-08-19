@@ -18,12 +18,14 @@ const Cycle=styled.div`
     background:#FFFFFF;
     width: 375px;
     height: 177px;
-    padding:15px;
     .Cycletitle{
+        position:relative;
+        left:4%;
         width: 92px;
         height: 28px;
         font-weight: 700;
         font-size: 19px;
+        top:5%;
     }
     .Cyclecontent{
         text-align: center;

@@ -1,10 +1,9 @@
 import React,{useState} from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-
 import backimg from "../../image/back-button.png";
 
-function Nav({BackLink,EndLink,title,btnName}){
+function Nav({BackLink,EndLink,title,btnName,Value}){
     // 네브바 뭉쳐보자ㅏㅏㅏㅏㅏㅏ
     const backimgCSS={
         background:`url(${backimg})`,

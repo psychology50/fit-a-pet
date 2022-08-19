@@ -1,9 +1,8 @@
-import React,{useState} from "react";
+import React,{useState,useCallback} from "react";
 import PetAddContainer from "../../styles/PetAddForm";
 import PetInfoInput from "../../Componets/Pet/PetInfoInput";
 import MemberInfoInput from "../../Componets/Member/MemberInfoInput";
 import Nav from "../../Componets/Nav/Nav";
-
 
 function CreatePetPage(){
     const userimg={
@@ -28,6 +27,8 @@ function CreatePetPage(){
         // 첨부한 사진 링크 가져오기
         setFileImage(URL.createObjectURL(e.target.files[0]));
     };
+
+
     return(
         <PetAddContainer>
             <Nav title={"새 반려동물 프로필"} btnName={"등록하기"} BackLink={"/MainPage"} EndLink={"/MainPage"}/>
@@ -50,7 +51,7 @@ function CreatePetPage(){
                     onChange={saveFileImage}
                 ></input>
             </div>
-            <PetInfoInput/>
+            <PetInfoInput />
             <MemberInfoInput/>
         </PetAddContainer>
     );

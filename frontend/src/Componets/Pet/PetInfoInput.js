@@ -1,7 +1,8 @@
 
-import React from "react";
+import React,{useState} from "react";
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
-
+import axiosInstance from "../../apis/axios";
 
 const genders = [
 	{ value: "male", name: "male" },
@@ -26,30 +27,31 @@ const GenderBox = (props) => {
 	);
 };
 
-function PetInfoInput(){
+function PetInfoInput({handleChange}){
+
 
     return(
         <PetinfoBox>
             <div className="Petname">
                 <div>이름</div>
-                <input type="text" ></input>
+                <input type="text" onChange={handleChange}></input>
             </div>
             <div className="Petgender">
                 <div>성별</div>
-                <GenderBox options={genders} ></GenderBox>
+                <GenderBox options={genders} onChange={handleChange}></GenderBox>
             </div>
             <div className="Petbirth">
                 <div>생년월일</div>
                 <PetbirthBox>
-                    <input type="text" placeholder="년"></input>
-                    <input type="text" placeholder="월"></input>
-                    <input type="text"placeholder="일"></input>
+                    <input type="text" placeholder="년" onChange={handleChange}></input>
+                    <input type="text" placeholder="월" onChange={handleChange}></input>
+                    <input type="text"placeholder="일" onChange={handleChange}></input>
                 </PetbirthBox>
             </div>
         </PetinfoBox>
     );
 }
-export default PetInfoInput;
+export default React.memo(PetInfoInput);
 
 
 

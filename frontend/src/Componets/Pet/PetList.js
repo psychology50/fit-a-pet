@@ -1,39 +1,60 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styled from 'styled-components';
+import axiosInstance from "../../apis/axios";
+import {Link} from 'react-router-dom';
 
 function PetList(){
+    const[pet,setPets]=useState([]);
+
+    useEffect(()=>{
+        axiosInstance.get('/pets')
+            .then((res) => {
+                //console.log(res.data[0]);
+                setPets(res.data);  
+                            
+            })
+    },[]);
+console.log(pet);  
     return(
         <PetListBox>
-            <form>
-                <PetInfoBox>
-                    <button style={{
-                            width: '50px',
-                            height: '50px',
-                            border:'2px solid',
-                            left:'6%',
-                            top:'5%'
-                            }}>
-                        사진
-                    </button>
-                    <div className="PetListInfo">
-                        <div style={{fontSize:'18px'}}>웅이(몇짤) </div>
-                        <div style={{ Color:'#5A5A5A',fontSize:'14px'}} >@코드</div>
-                    </div>
-                </PetInfoBox>
-                <PetStateBobBox>
-                    <div style={{left:'13%'}}>산책</div>
-                    <div className="PetBobStateBtn">
-                        <button>아침</button>
-                        <button>점심</button>
-                        <button>저녁</button>
-                    </div>
-                </PetStateBobBox>
-                <PetStateWalkBox>
-                    <div style={{left:'13%'}}>식사</div>
-                    <button>날짜ㅏㅏ</button>
-                </PetStateWalkBox>
+            {pet.map((pet)=>{
+                return(
+                    <form>
+                        <PetInfoBox>
+                            <Link to="/PetProfile">
+                                <button style={{
+                                        width: '50px',
+                                        height: '50px',
+                                        border:'2px solid',
+                                        left:'6%',
+                                        top:'5%'
+                                        }}>
+                                    사진
+                                </button>
+                            </Link>
+                            
+                            <div className="PetListInfo">
+                                <div style={{fontSize:'18px'}}>{pet.pet_name}</div>
+                                <div style={{ Color:'#5A5A5A',fontSize:'14px'}} >@{pet.code}</div>
+                            </div>
+                        </PetInfoBox>
+                        <PetStateBobBox>
+                            <div style={{left:'11%'}}>식사</div>
+                            <div className="PetBobStateBtn">
+                                <button>아침</button>
+                                <button>점심</button>
+                                <button>저녁</button>
+                            </div>
+                        </PetStateBobBox>
+                        <PetStateWalkBox>
+                            <div style={{left:'11%'}}>산책</div>
+                            <button>날짜ㅏㅏ</button>
+                        </PetStateWalkBox>
 
-            </form>       
+                    </form>       
+                )
+            })}
+            
         </PetListBox>
         
     );
@@ -42,17 +63,17 @@ export default PetList;
 
 const PetListBox= styled.div`
     position:relative;
-    
-    width: 325px;
-    height: 300px;
+    height: 300px; 
     padding:15px;
-    display:flex;
+    display:flex;  
+    left:7%;
+    width: 290px; 
     form{
-        left:4%;
+        right:6%;
+        width:287px;
         display:flex;
         flex-direction : column;
         position:relative;
-        width:320px;
         height:200px;
         background:#FFFFFF;
         display:flex;

@@ -34,8 +34,8 @@ function InitialPetList(){
 const InitialPetListBox= styled.div`
     background:#FFFFFF;
     position:relative;
-    left:8%;
-    width: 325px;
+    left:7%;
+    width: 290px;
     height: 300px;
     padding:15px;
     display:flex;
@@ -54,7 +54,7 @@ const InitialPetListBox= styled.div`
     .InitialAdd-btn{
         display:flex;
         top:23%;
-        left:21%;
+        left:18%;
         gap:10px;
     }
     .codeInput{

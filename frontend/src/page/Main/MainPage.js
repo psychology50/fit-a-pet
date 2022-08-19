@@ -1,15 +1,38 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React,{useEffect, useState,useMemo} from "react";
 import MainNav from "../../Componets/Nav/MainNav";
 import InitialCycleList from "../../Componets/Cycle/InitialCycleList";
 import CycleList from "../../Componets/Cycle/CycleList";
 import MainFormContainer from '../../styles/MainForm.js';
 import InitialPetList from "../../Componets/Pet/InitialPetList";
 import PetList from "../../Componets/Pet/PetList";
+import axiosInstance from "../../apis/axios";
 
 function MainPage(){
-    const isCycleIn = 1;
-    const isPetIn = 1;
+
+    const [isCycleIn,setIsCycleIn] = useState(0);//Cycle 보류
+    const [isPetIn,setIsPetIn] = useState(0);
+
+    const [data, setData] = useState(null);
+    
+    useEffect(()=>{
+        const handleCheck = () => {
+            axiosInstance.get('/pets')
+                .then((res) => {
+                    console.log(res.data.length);
+                    //console.log(res.data[0]);
+                    setData(res.data.length);                
+                })
+        }
+        const PetlistCheck=()=>{
+            if(data > 0){
+            setIsCycleIn(1);//Cycle 보류
+            setIsPetIn(1);
+            }
+        }
+        handleCheck();
+        PetlistCheck();
+    });
 
     return(
         <MainFormContainer>

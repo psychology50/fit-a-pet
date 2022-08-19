@@ -10,6 +10,7 @@ import MyProfile from './page/Auth/MyProfile';
 import CreateCyclePage from './page/Cycle/CreateCyclePage';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import PetProfile from './page/Pet/PetProfile';
+import PetInfoInput from './Componets/Pet/PetInfoInput';
 
 function App() {
 

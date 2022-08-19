@@ -63,7 +63,6 @@ const NavBar=styled.nav`
     background:#FFFFFF;
     width:375px;
     height:80px;
-    padding:15px;
     button:hover{
         cursor:pointer;
         border-radius:50%;

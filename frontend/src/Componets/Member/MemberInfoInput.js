@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 
 function PetMember(){
+
     return(
         <PetMemberBox>
             <hr />
