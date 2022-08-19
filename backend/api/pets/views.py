@@ -63,10 +63,9 @@ class PetViewSet(ModelViewSet):
             instance = serializer.save()
             id_list = CustomUser.objects.filter(nickname__in=member).values_list('user_id', flat=True)
             for id in id_list: # create Pet
-                s = MemberSerializer(data={"user_id": id, "pet_id": instance.pet_id})
+                s = CreateMemberSerializer(data={"user_id": id, "pet_id": instance.pet_id})
                 s.is_valid(raise_exception=True)
                 s.save()
-                
             cycle_data = create_init_cycle_data(instance.pet_id)
             for data in cycle_data: # create Regular Cycle
                 detail_data = data.pop('detail', False)
