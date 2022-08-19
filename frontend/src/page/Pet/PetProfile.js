@@ -21,7 +21,11 @@ function PetProfile(props) {
         code={data.code}
         gender={data.gender}
       />
-      <CycleInfo />
+      <CycleInfo
+        morning={data.morning}
+        lunch={data.lunch}
+        dinner={data.dinner}
+      />
       <PetProfileTap />
     </div>
   );

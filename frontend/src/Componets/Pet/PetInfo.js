@@ -7,6 +7,8 @@ function PetInfo(props) {
   const nowYear = now.getFullYear();
   const birthYear = props.birth.substr(0, 4);
   const age = birthYear - nowYear + 1;
+  const temp = new Date("yyyy-mm-dd");
+  console.log(temp);
   return (
     <MyProfile>
       <div className="profileInfo">
@@ -19,7 +21,10 @@ function PetInfo(props) {
       <ul className="profileage">
         <li className="sex">
           <label>성별</label>
-          <strong className="sexValue"> {props.gender} </strong>
+          <strong className="sexValue">
+            {" "}
+            {props.gender === "male" ? "남자" : "여자"}{" "}
+          </strong>
         </li>
         <li className="age">
           <label>나이</label>
