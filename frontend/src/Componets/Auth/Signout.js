@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import SignoutButton from './SignoutButton';
 
 function Signout (){
-
+    const [trigger, setTrigger] = useState(false);
+    const logout = {
+        out: <SignoutButton />
+    }
+    const handleClickButton = () => {
+        setTrigger(true);
+    }
     return (
         <SignOutContainer>
-            <input type="bttton" value="로그아웃" />
+            {/* <input type="button" value="로그아웃" onClick={event =>  window.location.href='./SignoutButton.js'} /> */}
+            <input type="button" value="로그아웃" onClick={handleClickButton} />
+            {trigger && logout.out}
         </SignOutContainer>
     )
 }
@@ -24,5 +33,6 @@ const SignOutContainer=styled.div`
         box-shadow: 0px 2px 12px -3px rgba(0, 0, 0, 0.1);
         margin-left: 40px;
         margin-bottom: 44px;
+        cursor: pointer;
     }
 `;
