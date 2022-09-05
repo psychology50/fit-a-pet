@@ -12,8 +12,8 @@ cycle_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
 cycle_router.register(r'cycles', CycleViewSet, basename = "pet-cycle")
 
 
-event_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
-event_router.register(r'events', EventViewSet, basename = "pet-events")
+# event_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
+# event_router.register(r'events', EventViewSet, basename = "pet-events")
 
 """
 prescription_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
@@ -38,7 +38,7 @@ urlpatterns = [
     # path('<int:pk>/events/<int:event_pk>/complete/', EventCompleteView.as_view(), name='event-complete'),
 
     # events router
-    path('', include(event_router.urls)),
+    # path('', include(event_router.urls)),
 
     # prescriptions
     path('<int:pk>/prescriptions/', PrescriptionCreateView.as_view(), name='prescription-create'),

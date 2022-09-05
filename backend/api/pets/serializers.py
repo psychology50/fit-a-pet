@@ -29,7 +29,7 @@ class MemberSerializer(serializers.ModelSerializer):
         ).values('user_id', 'username', 'nickname', 'profile_img')
 
 class PetSerializer(serializers.ModelSerializer):
-    birthday = serializers.DateField(format='%Y-%m-%d')
+    # birthday = serializers.DateField(format='%Y-%m-%d')
     class Meta:
         model = Pet
         fields = '__all__'
