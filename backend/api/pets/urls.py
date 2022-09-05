@@ -11,9 +11,8 @@ router.register('', PetViewSet)
 cycle_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
 cycle_router.register(r'cycles', CycleViewSet, basename = "pet-cycle")
 
-
-# event_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
-# event_router.register(r'events', EventViewSet, basename = "pet-events")
+event_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
+event_router.register(r'events', EventViewSet, basename = "pet-events")
 
 """
 prescription_router = routers.NestedSimpleRouter(router, r'', lookup='pet')
@@ -26,19 +25,9 @@ active_router.register(r'actives', ActiveImgViewSet, basename = "pet-actives")
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(cycle_router.urls)),
-    # path('', include(event_router.urls)),
+    path('', include(event_router.urls)),
     # path('', include(prescription_router)),
     # path('', include(active_router))
-    
-    # events
-    # path('<int:pk>/events/', EventCreateView.as_view(), name='event-create'),
-    # path('<int:pk>/events/<int:event_pk>/', EventUpdateView.as_view(), name='event-update'),
-    # path('<int:pk>/events/list/', EventListView.as_view(), name='event-list'),
-    # path('<int:pk>/events/<int:event_pk>/delete/', EventDeleteView.as_view(), name='event-delete'),
-    # path('<int:pk>/events/<int:event_pk>/complete/', EventCompleteView.as_view(), name='event-complete'),
-
-    # events router
-    # path('', include(event_router.urls)),
 
     # prescriptions
     path('<int:pk>/prescriptions/', PrescriptionCreateView.as_view(), name='prescription-create'),
