@@ -1,3 +1,4 @@
+from pickle import FALSE, TRUE
 from telnetlib import STATUS
 from django.contrib.auth import authenticate
 from rest_framework import status
@@ -47,12 +48,17 @@ class SignInUserView(APIView):
     def post(self, request):
         nickname = request.data.get("nickname")
         password = request.data.get("password")
-        if not nickname or not password:
+        email = request.data.get("email")
+        
+        if not nickname or not password or not email:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
         user = authenticate(
             nickname=nickname,
             password=password,
+            email=email
         )
+
         if user:
             token = TokenObtainPairSerializer.get_token(user)
             refresh_token = str(token)
@@ -127,3 +133,19 @@ class ProfileView(APIView):
             serializer.save()
             return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class DuplicateCheckView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        if request.data['type'] == 'nickname':
+            if CustomUser.objects.filter(nickname=request.data["value"]).exists():
+                return Response({'message': "Duplicated nickname!", 'duplicate': True})
+            else:
+                return Response({'message': "Not duplicated nickname!", 'duplicate': False})
+        else:
+            if CustomUser.objects.filter(email=request.data["value"]).exists():
+                return Response({'message': "Duplicated email!", 'duplicate': True})
+            else:
+                return Response({'message': "Not duplicated email!",'duplicate': False})

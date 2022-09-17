@@ -44,7 +44,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     )
     nickname = models.CharField(max_length=45, unique=True)
     create_dt = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
+    email = models.CharField(max_length=100)
     phone = models.CharField(max_length=45, blank=True, null=True)
     profile_img = models.ImageField(upload_to="users/%Y/%m/%d/", blank=True, null=True)
 
@@ -54,7 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomAccountManger()
 
     USERNAME_FIELD = "nickname"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = ["username", "email"]
 
     class Meta:
         db_table = "users"

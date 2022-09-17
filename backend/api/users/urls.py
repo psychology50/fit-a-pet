@@ -1,6 +1,7 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 from .views import (
+    DuplicateCheckView,
     ProfileView,
     UserListView,
     CustomUserView,
@@ -19,4 +20,5 @@ urlpatterns = [
     path("signout/", SignOutUserView.as_view(), name="logout"),
     path("delete", DeleteUserView.as_view(), name="delete"),
     path("profile", ProfileView.as_view(), name="profile"),
+    path("duplicatecheck/", DuplicateCheckView.as_view(), name="duplicate-check")
 ]

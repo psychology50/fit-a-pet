@@ -16,16 +16,19 @@ class CustomUserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         password = validated_data.get("password")
         instance = self.Meta.model(**validated_data)
+
         if password is not None:
             instance.set_password(password)
+
         instance.save()
+        
         return instance
 
     def validate(self, attrs):
-        nickname = attrs["nickname"]
+        # nickname = attrs["nickname"]
         password = attrs["password"]
-        if CustomUser.objects.filter(nickname=nickname).exists():
-            raise serializers.ValidationError("이미 존재하는 닉네임입니다.")
+        # if CustomUser.objects.filter(nickname=nickname).exists():
+        #     raise serializers.ValidationError("이미 존재하는 닉네임입니다.")
         validate_password(password)
 
         return attrs
