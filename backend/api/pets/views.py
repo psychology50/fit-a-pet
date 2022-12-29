@@ -173,6 +173,8 @@ class CycleViewSet(ModelViewSet):
         except Http404:
             pass
         return Response(status=status.HTTP_204_NO_CONTENT)
+        
+
 class EventViewSet(ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
