@@ -48,15 +48,13 @@ class SignInUserView(APIView):
     def post(self, request):
         nickname = request.data.get("nickname")
         password = request.data.get("password")
-        email = request.data.get("email")
         
-        if not nickname or not password or not email:
+        if not nickname or not password:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         user = authenticate(
             nickname=nickname,
             password=password,
-            email=email
         )
 
         if user:
