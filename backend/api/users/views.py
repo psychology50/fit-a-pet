@@ -51,7 +51,6 @@ class SignInUserView(APIView):
         
         if not nickname or not password:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
         user = authenticate(
             nickname=nickname,
             password=password,
