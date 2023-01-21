@@ -90,59 +90,59 @@ class SignOutUserView(APIView):
         return Response({"message": "logout success"}, status=status.HTTP_204_NO_CONTENT)
 
 
-class DeleteUserView(APIView):
-    def delete(self, request):
-        User = CustomUser.objects.get(user_id=request.user.user_id)
-        member = Member.objects.filter(user_id=request.user.user_id)
-        member.delete()
-        User.delete()
-        return Response(status=status.HTTP_200_OK)
+# class DeleteUserView(APIView):
+#     def delete(self, request):
+#         User = CustomUser.objects.get(user_id=request.user.user_id)
+#         member = Member.objects.filter(user_id=request.user.user_id)
+#         member.delete()
+#         User.delete()
+#         return Response(status=status.HTTP_200_OK)
 
 
-class ProfileView(APIView):
-    def get(self, request, *args, **kwargs):
-        user = CustomUser.objects.get(user_id=request.user.user_id)
-        if user.profile_img is not None:
-            print(user.profile_img)
-            return Response(
-                {
-                    "user_id": user.user_id,
-                    "username": user.username,
-                    "email": user.email,
-                    "phone": user.phone,
-                    "profile_img": "http://127.0.0.1:8000/media/" + str(user.profile_img),
-                }
-            )
-        else:
-            return Response(
-                {
-                    "user_id": user.user_id,
-                    "username": user.username,
-                    "email": user.email,
-                    "phone": user.phone,
-                }
-            )
+# class ProfileView(APIView):
+#     def get(self, request, *args, **kwargs):
+#         user = CustomUser.objects.get(user_id=request.user.user_id)
+#         if user.profile_img is not None:
+#             print(user.profile_img)
+#             return Response(
+#                 {
+#                     "user_id": user.user_id,
+#                     "username": user.username,
+#                     "email": user.email,
+#                     "phone": user.phone,
+#                     "profile_img": "http://127.0.0.1:8000/media/" + str(user.profile_img),
+#                 }
+#             )
+#         else:
+#             return Response(
+#                 {
+#                     "user_id": user.user_id,
+#                     "username": user.username,
+#                     "email": user.email,
+#                     "phone": user.phone,
+#                 }
+#             )
 
-    def patch(self, request):
-        user = CustomUser.objects.get(user_id=request.user.user_id)
-        serializer = UserProfileSerializer(user, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+#     def patch(self, request):
+#         user = CustomUser.objects.get(user_id=request.user.user_id)
+#         serializer = UserProfileSerializer(user, data=request.data, partial=True)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(status=status.HTTP_200_OK)
+#         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-class DuplicateCheckView(APIView):
-    permission_classes = [AllowAny]
+# class DuplicateCheckView(APIView):
+#     permission_classes = [AllowAny]
 
-    def post(self, request):
-        if request.data['type'] == 'nickname':
-            if CustomUser.objects.filter(nickname=request.data["value"]).exists():
-                return Response({'message': "Duplicated nickname!", 'duplicate': True})
-            else:
-                return Response({'message': "Not duplicated nickname!", 'duplicate': False})
-        else:
-            if CustomUser.objects.filter(email=request.data["value"]).exists():
-                return Response({'message': "Duplicated email!", 'duplicate': True})
-            else:
-                return Response({'message': "Not duplicated email!",'duplicate': False})
+#     def post(self, request):
+#         if request.data['type'] == 'nickname':
+#             if CustomUser.objects.filter(nickname=request.data["value"]).exists():
+#                 return Response({'message': "Duplicated nickname!", 'duplicate': True})
+#             else:
+#                 return Response({'message': "Not duplicated nickname!", 'duplicate': False})
+#         else:
+#             if CustomUser.objects.filter(email=request.data["value"]).exists():
+#                 return Response({'message': "Duplicated email!", 'duplicate': True})
+#             else:
+#                 return Response({'message': "Not duplicated email!",'duplicate': False})
