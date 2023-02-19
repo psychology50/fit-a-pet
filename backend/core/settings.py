@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     # app
     'users.apps.UsersConfig',
     'pets.apps.PetsConfig',
+    # swagger
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
