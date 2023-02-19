@@ -20,8 +20,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from rest_framework import permissions
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -33,7 +36,7 @@ schema_view = get_schema_view(
         license=openapi.License(name="Test License")
     ),
     public=True,
-    permission_classes=[permissions.AllowAny]
+    permission_classes=[permissions.AllowAny],
 )
 
 urlpatterns = [

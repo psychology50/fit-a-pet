@@ -4,8 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-CustomUser = get_user_model()
-
+CustomUser = get_user_model() 
 
 class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:

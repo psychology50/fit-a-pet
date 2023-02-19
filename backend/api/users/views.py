@@ -8,6 +8,10 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework.generics import ListAPIView
+from rest_framework.decorators import authentication_classes
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from users.models import CustomUser
 from .serializers import (
     CustomUserSerializer,
@@ -15,8 +19,8 @@ from .serializers import (
     UserListSerializer,
     UserProfileSerializer,
 )
+from .swaggers import *
 from pets.models import Member
-
 
 class CustomUserView(APIView):
     permission_classes = [AllowAny]
@@ -45,6 +49,7 @@ class UserListView(ListAPIView):
 class SignInUserView(APIView):
     permission_classes = [AllowAny]
 
+    @swagger_auto_schema(request_body=LoginUserBodySerializer)
     def post(self, request):
         nickname = request.data.get("nickname")
         password = request.data.get("password")
@@ -72,11 +77,14 @@ class SignInUserView(APIView):
             res.set_cookie("refresh", refresh_token, httponly=True)
             return res
         return Response(status=status.HTTP_401_UNAUTHORIZED)
-
-
+    
 class SignOutUserView(APIView):
     permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
 
+    @swagger_auto_schema(
+        security=[{'BearerAuth': []}],
+    )
     def post(self, request, *args):
         user = RefreshTokenSerializer(data=request.data)
         user.is_valid(raise_exception=True)
