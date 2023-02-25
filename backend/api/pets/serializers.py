@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from pets.models import *
+from api.pets.cycles.serializers import CycleSerializer
 
 CustomUser = get_user_model()
 
@@ -46,17 +47,6 @@ class DetailSerializer(serializers.ModelSerializer):
         date = obj.achievement.all().order_by('-date').values_list('date', flat=True)
         return date[0] if date else None
 
-class CycleSerializer(serializers.ModelSerializer):
-    detail = DetailSerializer(many=True)
-    class Meta:
-        model = Cycle
-        ordering = ['cycle_id']
-        fields = '__all__'
-
-class CreateCycleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cycle
-        fields = '__all__'
 
 class CreateDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -74,24 +64,3 @@ class DetailPetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pet
         fields = ['pet_id', 'pet_name', 'gender', 'master', 'birthday', 'code']
-
-class EventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        ordering = ['-date']
-        fields = '__all__'
-
-class PrescriptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Prescription
-        fields = '__all__'
-
-class ActiveImagesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ActiveImage
-        fields = '__all__'
-
-class ActiveImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ActiveImage
-        fields = '__all__'

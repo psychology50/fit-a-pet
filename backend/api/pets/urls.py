@@ -2,6 +2,10 @@ from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 from rest_framework_nested import routers
 from .views import *
+from .active_images.views import *
+from .cycles.views import *
+from .events.views import *
+from .prescriptions.views import *
 
 app_name = 'pets'
 
