@@ -11,7 +11,7 @@ from rest_framework  import generics
 
 from pets.models import *
 from .serializers import *
-from api.pets.permissions import MemberPermission
+from ..permissions import MemberPermission
 
 class ActiveImageCreateView(generics.CreateAPIView):
     queryset = ActiveImage.objects.all()

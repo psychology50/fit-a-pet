@@ -10,7 +10,7 @@ from rest_framework.decorators import action
 
 from pets.models import *
 from .serializers import *
-from api.pets.permissions import MemberPermission
+from ..permissions import MemberPermission
 
 class EventViewSet(ModelViewSet):
     queryset = Event.objects.all()
@@ -21,11 +21,12 @@ class EventViewSet(ModelViewSet):
         return [permission() for permission in permission_classes]
     
     def create(self, request, *args, **kwargs):
-        pet_id = kwargs.pop('pet_pk', False)
-        request.data['pet_id'] = int(pet_id)
+        request.data['pet_id'] = kwargs.pop('pet_pk', False)
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
+        
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
         
@@ -37,8 +38,10 @@ class EventViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 
-        if getattr(instance, '_prefetched_objects_cache', None):
-            instance._prefetched_objects_cache = {}
+        # if getattr(instance, '_prefetched_objects_cache', None):
+        #     # If 'prefetch_related' has been applied to a queryset, we need to
+	    #     # forcibly invalidate the prefetch cache on the instance.
+        #     instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
     
@@ -51,9 +54,6 @@ class EventViewSet(ModelViewSet):
     @action(methods=['GET'], detail=True)
     def complete(self, request, *args, **kwargs):
         instance = self.get_object()
-        if instance.is_clear == True:
-            instance.is_clear = False
-        else :
-            instance.is_clear = True
+        instance.is_clear = not instance.is_clear
         instance.save()
         return Response()

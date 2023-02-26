@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
 from pets.models import *
-from api.pets.cycles.serializers import CycleSerializer
+from .cycles.serializers import CycleSerializer
 
 CustomUser = get_user_model()
 
@@ -35,32 +35,14 @@ class PetSerializer(serializers.ModelSerializer):
         model = Pet
         fields = '__all__'
 
-class DetailSerializer(serializers.ModelSerializer):
-    clear_dt = serializers.SerializerMethodField(source="achievement")
-
+class DetailPetSerializer(serializers.ModelSerializer):
+    master = serializers.StringRelatedField()
     class Meta:
-        model = CycleDetail
-        ordering = ['cycle_id']
-        fields = '__all__'
-
-    def get_clear_dt(self, obj):
-        date = obj.achievement.all().order_by('-date').values_list('date', flat=True)
-        return date[0] if date else None
-
-
-class CreateDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CycleDetail
-        fields = '__all__'
+        model = Pet
+        fields = ['pet_id', 'pet_name', 'gender', 'master', 'birthday', 'code']
 
 class ListPetSerializer(serializers.ModelSerializer):
     cycle = CycleSerializer(many=True, source="cycle_set")
     class Meta:
         model = Pet
         fields = ['pet_id', 'pet_name', 'gender', 'birthday', 'code', 'cycle']
-
-class DetailPetSerializer(serializers.ModelSerializer):
-    master = serializers.StringRelatedField()
-    class Meta:
-        model = Pet
-        fields = ['pet_id', 'pet_name', 'gender', 'master', 'birthday', 'code']

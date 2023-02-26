@@ -18,7 +18,7 @@ from api.users.serializers import UserListSerializer
 from .serializers import *
 from .permissions import MemberPermission
 
-from .cycles.serializers import CreateCycleSerializer
+from .cycles.serializers import CreateCycleSerializer, CreateDetailSerializer
 from .events.serializers import EventSerializer
 
 def create_init_cycle_data(id):

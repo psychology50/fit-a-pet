@@ -7,10 +7,11 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
+from rest_framework  import generics
 
 from pets.models import *
 from .serializers import *
-from api.pets.permissions import MemberPermission
+from ..permissions import MemberPermission
 
 class PrescriptionCreateView(generics.CreateAPIView):
     queryset = Prescription.objects.all()

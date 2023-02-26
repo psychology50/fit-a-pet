@@ -10,7 +10,7 @@ from rest_framework.decorators import action
 
 from pets.models import *
 from .serializers import *
-from api.pets.permissions import MemberPermission
+from ..permissions import MemberPermission
 
 class CycleViewSet(ModelViewSet):
     queryset = Cycle.objects.all()
