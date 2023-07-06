@@ -114,7 +114,7 @@ class Cycle(models.Model):
 class CycleDetail(models.Model):
     detail_id = models.BigAutoField(primary_key=True, unique=True, verbose_name="detail_id")
     detail_name = models.CharField(max_length=45, blank=True, null=True)
-    time = models.CharField(max_length=45, default="00:00")  # 몇 시에 반복할지(일정 패턴)
+    time = models.CharField(max_length=45, default="00:00") 
     cycle_id = models.ForeignKey(
         Cycle, on_delete=models.CASCADE, db_column="cycle_id", related_name="detail"
     )
